@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mulianVillage02-admin-webui" />
+        <module name="mulianVillage03-admin-component" />
+        <module name="mulianVillage04-admin-entity" />
+        <module name="mulianVillage05-commocin-util" />
+        <module name="mulianVillage06-commocin-reverse" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mulianVillage01-admin-parent" target="1.7" />
+      <module name="mulianVillage02-admin-webui" target="1.7" />
+      <module name="mulianVillage03-admin-component" target="1.7" />
+      <module name="mulianVillage04-admin-entity" target="1.7" />
+      <module name="mulianVillage05-commocin-util" target="1.7" />
+      <module name="mulianVillage06-commocin-reverse" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

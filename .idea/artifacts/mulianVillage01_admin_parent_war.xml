@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mulianVillage01-admin-parent:war">
+    <output-path>$PROJECT_DIR$/mulianVillage01-admin-parent/target</output-path>
+    <root id="archive" name="mulianVillage01-admin-parent.war">
+      <element id="artifact" artifact-name="mulianVillage01-admin-parent:war exploded" />
+    </root>
+  </artifact>
+</component>

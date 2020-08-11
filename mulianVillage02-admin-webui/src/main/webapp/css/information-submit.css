@@ -1,0 +1,50 @@
+/*****信息报送查询表单*****/
+.information-submit-form{
+    margin: 12px 0 20px 0;
+    padding: 6px;
+    width: 1048px;
+    height: 95px;
+    border: 1px #F2F2F2 solid;
+}
+.my-form{
+    position: relative;
+}
+.my-form input{
+    margin-left: 84px;
+    cursor: pointer;
+}
+.my-form .row{
+    float: left;
+    margin: 0 20px 0 0;
+}
+.col-xs-6 {
+    width: 50%;
+}
+.widget {
+    width: 150px;
+}
+.form-control {
+    width: 235px;
+}
+.col-xs-6 .form-control .widget {
+    margin-left:85px;
+}
+.notice-manage-table{
+    border: 1px solid #f2f2f2;
+    margin-top: 20px;
+}
+.col-xs-6.until{
+    margin-left: -34px;
+}
+.widget.textbox.until{
+    margin-left:30px;
+}
+.my-form .btn{
+    position: absolute;
+    bottom: 4px;
+    right: 40px;
+    padding: 4px 32px;
+}
+.status-title{
+    word-spacing: 23px;
+}

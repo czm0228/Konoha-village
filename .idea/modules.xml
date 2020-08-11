@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mulianVillage01-admin-parent/mulianVillage01-admin-parent.iml" filepath="$PROJECT_DIR$/mulianVillage01-admin-parent/mulianVillage01-admin-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mulianVillage02-admin-webui/mulianVillage02-admin-webui.iml" filepath="$PROJECT_DIR$/mulianVillage02-admin-webui/mulianVillage02-admin-webui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mulianVillage03-admin-component/mulianVillage03-admin-component.iml" filepath="$PROJECT_DIR$/mulianVillage03-admin-component/mulianVillage03-admin-component.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mulianVillage04-admin-entity/mulianVillage04-admin-entity.iml" filepath="$PROJECT_DIR$/mulianVillage04-admin-entity/mulianVillage04-admin-entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mulianVillage05-commocin-util/mulianVillage05-commocin-util.iml" filepath="$PROJECT_DIR$/mulianVillage05-commocin-util/mulianVillage05-commocin-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mulianVillage06-commocin-reverse/mulianVillage06-commocin-reverse.iml" filepath="$PROJECT_DIR$/mulianVillage06-commocin-reverse/mulianVillage06-commocin-reverse.iml" />
+    </modules>
+  </component>
+</project>

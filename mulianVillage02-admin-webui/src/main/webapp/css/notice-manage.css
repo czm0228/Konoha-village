@@ -1,0 +1,101 @@
+.notice-manage-menu{
+    margin: 12px 0 20px 0;
+    padding: 10px;
+    width: 1020px;
+    height: 100px;
+    border: 1px solid #f2f2f2;
+}
+/*公告查询或公共*/
+.my-form{
+    position: relative;
+}
+.my-form input{
+    cursor: pointer;
+}
+.my-form .row{
+    float: left;
+    margin: 0 20px 0 0;
+}
+.col-xs-6{
+    width: 50%;
+}
+.widget{
+    width: 150px;
+}
+.col-xs-6 .form-control .widget{
+    margin-left: 85px;
+}
+.notice-manage-table{
+    margin-top: 20px;
+}
+.col-xs-6.until{
+    margin-left: -34px;
+}
+.widget.textbox.until{
+    margin-left: 30px;
+}
+.my-form .btn{
+    padding: 4px 32px;
+}
+.status-title{
+    word-spacing: 23px;
+}
+
+/*-----------公告管理下面的查询与发布样式-----------------*/
+/*=====发布=====*/
+.my-form .notice-manage-publish,.my-form .notice-manage-search{
+    margin-top: 30px;
+    line-height: 28px;
+}
+.notice-manage-publish .notice-manage-publish-box{
+    width: 500px;
+    height: 150px;
+}
+.notice-manage-publish .textarea-box{
+    width: 499px;
+    height: 149px;
+}
+.notice-manage-publish .col-xs-6,.notice-manage-search .col-xs-6{
+    float: initial;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.textbox-wrap a{
+    margin-left: 45px;
+    color: gray;
+}
+.notice-manage-publish .upload-attachment{
+    margin-top: 5px;
+}
+.my-form  .btn{
+    position: initial;
+}
+.my-form .btn-primary{
+    margin: 45px 0 0 100px;
+}
+.notice-publish-btns{
+    margin-left: 50px;
+}
+
+.notice-manage-search .textbox{
+    width: 100%;
+}
+.notice-manage-search .btn-primary{
+    float: right;
+}
+.notice-manage-search-title{
+    height: 30px;
+}
+.notice-manage-text{
+    width: 500px;
+    height: 150px;
+}
+.notice-manage-search p{
+    float: left;
+    margin-left: 25px;
+    width: 100px;
+}
+.my-form .notice-manage-backBtn{
+    margin-left: 300px;
+}

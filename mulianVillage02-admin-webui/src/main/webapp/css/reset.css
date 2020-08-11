@@ -1,0 +1,162 @@
+/*
+ * 公用的css，即base和reset
+ * @author liyang3
+ */
+
+@charset 'utf-8';
+
+body,div{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font: normal 12px 'Microsoft YaHei';
+}
+
+/* 常用元素 */
+body,div,p,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form{
+    margin: 0;
+    padding: 0;
+}
+img,abbr,acronym{
+    border: none;
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight: normal;
+}
+
+ol,ul{
+    list-style: none;
+}
+a{
+    overflow: hidden;
+    outline: 0;
+    text-decoration: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    _blr: expression(this.onFocus=this.blur());
+}
+a:hover{
+    text-decoration: none;
+}
+input{
+    outline: none;
+    border: 0;
+}
+textarea{
+    resize: none;
+}
+
+.hide,.hidden{
+    display: none;
+}
+/* 浮动 */
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+
+/* 清除浮动 */
+.clear{
+    clear: both;
+    overflow: hidden;
+    height: 0;
+}
+.clearfix{
+    display: block;
+    zoom: 1;
+}
+.clearfix:after{
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    font-size: 0;
+    content: ' ';
+}
+/* IE6 fixed 解决闪动 */
+*html{
+    background-image: url(about:blank);
+    background-attachment: fixed;
+}
+
+/* 文字溢出省略 */
+.ell,.ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/* 文字对齐方式 */
+.text-left{
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
+/* table */
+table{
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+table tr,table th,table td{
+    border-collapse: collapse;
+}
+/* tab公用样式样式 */
+.information-submit-content {
+    position: absolute;
+    top: 0;
+    background: #fff;
+    border-radius: 4px;
+    padding: 10px 18px;
+}
+.information-submit-position{
+    color: #7A7A7A;
+    font: normal 14px/14px 'Microsoft YaHei';
+}
+.information-submit-tab{
+    margin-top: 15px;
+}
+.information-submit-tab a{
+    display: inline-block;
+    margin-right: 50px;
+    width: 150px;
+    height: 35px;
+    text-align: center;
+    font: normal 16px/35px 'Microsoft YaHei';
+    border: 1px #ccc solid;
+    background: #F2F2F2;
+    color: #616161;
+}
+.information-submit-tab a:hover{
+    text-decoration: none;
+    background: #B7B7B7;
+    color: #fff;
+}
+
+/*-----表格的处理的公用样式-----*/
+.grid-table a{
+   margin-left: 10px;
+}
+.notice-manage-pagenation{
+    position: absolute;
+    bottom:40px;
+    width: 100%;
+}
+.grid .grid-table th,
+.grid .grid-table td{
+    border-right: 1px solid #ccc;
+}
+.grid-table .noboeder-right{
+    border-right: none;
+}
+.notice-manage-table .grid,.information-submit-table .grid{
+    border-right: none;
+}

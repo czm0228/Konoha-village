@@ -1,0 +1,31 @@
+*{
+	margin: 0px auto;
+	
+}
+#img-span {
+	max-height: 40%;
+	max-width: 40%;
+}
+
+.page-div {
+	float: right;
+}
+table{
+	border-color:  #8C8C8C;
+	text-align: center;
+	
+}
+.aId{
+	text-decoration: none;
+}
+.result-title{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	color:  #BFBFBF;
+	font-size: 15px;
+}
+.result-content{
+	padding-top: 50px;
+}
+

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mulianVillage06-commocin-reverse:war">
+    <output-path>$PROJECT_DIR$/mulianVillage06-commocin-reverse/target</output-path>
+    <root id="archive" name="mulianVillage06-commocin-reverse.war">
+      <element id="artifact" artifact-name="mulianVillage06-commocin-reverse:war exploded" />
+    </root>
+  </artifact>
+</component>

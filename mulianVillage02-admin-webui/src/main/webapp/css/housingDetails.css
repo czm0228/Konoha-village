@@ -1,0 +1,26 @@
+
+	
+	.img-span {
+		float: left;
+		margin: 20px 20px 20px 20px;
+		width: 1000px;
+	}
+	
+
+	.result-title{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	color:  #BFBFBF;
+	font-size: 15px;
+}
+
+#imgOne{
+	max-height: 60%;
+	max-width: 60%;
+}
+/*
+#sp{
+	 position: relative;
+		left: 300px;
+ }*/

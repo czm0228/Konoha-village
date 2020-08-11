@@ -1,0 +1,190 @@
+/*body{
+    overflow: hidden;
+}*/
+.music{
+    position: absolute;
+    top: 86px;
+    left: 210px;
+    font-size: 11px;
+    color: white;
+}
+.music:hover{
+    color: #fd7e14;
+}
+.background {
+    position: absolute;
+    z-index: -5;
+    width: 100%;
+    min-width: 1440px;
+    height: 100%;
+    min-height: 775px;
+}
+
+/***** 头部样式 *****/
+.header{
+    padding-left: 70px;
+    height: 80px;
+    background: rgba(0,0,0,.1);
+    font-size: 20px;
+    line-height: 80px;
+    color: #fff;
+    min-width: 1353px;
+}
+#spanTitle{
+	position: absolute;
+	left: 200px;
+}
+#logo{
+	 margin: 0;
+    padding: 0;
+    min-width:150px;
+    max-width:150px; 
+    position: absolute;
+    top: 10px;
+    left: 30px;
+  
+}
+/***** 主体内容样式 *****/
+.main{
+    margin: 0 auto;
+    width: 1440px;
+}
+/***** 侧栏样式 *****/
+.sidebar{
+    float: left;
+    padding-left: 20px;
+    width: 230px;
+    height: 695px;
+    background: rgba(0,0,0,.2);
+}
+.login{
+    padding-top: 10px;
+    width: 210px;
+    height: 86px;
+    border-bottom: 1px #1f5fa0 solid;
+}
+.pic-header{
+    float: left;
+    margin: 0 10px;
+}
+.welcome{
+    position: relative;
+    margin: 3px 0 0 70px;
+    padding-left: 10px;
+    width: 60px;
+    height: 25px;
+    color: #fff;
+}
+.login a{
+    display: inline-block;
+    height: 20px;
+    color: #fff;
+}
+.user{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 78px;
+}
+.exit{
+    width: 45px;
+    background: #1b467a;
+    border-radius: 2px;
+    line-height: 20px;
+    text-align: center;
+}
+.last-login{
+    margin-top: 11px;
+    height: 23px;
+    border-bottom: 1px #3b87d2 solid;
+    color: #93a4bf;
+}
+.login-time{
+    color: #fff;
+}
+.nav{
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    width: 185px;
+    height: 36px;
+    font: normal 14px/36px 'Microsoft YaHei';
+    color: #f3f3f3;
+}
+.icon{
+    position: absolute;
+    top: 11px;
+    left: 0;
+}
+.nav-down{
+    position: absolute;
+    top: 15px;
+    right: 8px;
+}
+.submenu a{
+    display: inline-block;
+    position: relative;
+    padding-left: 50px;
+    width: 160px;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+}
+.icon-sub{
+    position: absolute;
+    top: 9px;
+    left: 25px;
+}
+.nav:hover,.submenu a:hover,.nav-selected{
+    background: rgba(0,0,0,.3);
+}
+/***** iframe样式 *****/
+.frame{
+    position: relative;
+    margin-left: 250px;
+    height: 695px;
+}
+.frame-bg{
+    position: absolute;
+    top:12px;
+    left:14px;
+    right: 20px;
+    height: 634px;
+}
+.frame-bg img{
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+.frame-container{
+    position: absolute;
+    top: 40px;
+    left: 27px;
+    right: 22px;
+    bottom: 22px;
+}
+.system-management{
+    position: absolute;
+    right: 24px;
+    top: 12px;
+    color: #7A7A7A;
+    font: normal 14px 'Microsoft YaHei';
+}
+.frame-container iframe{
+    width: 100%;
+    height: 100%;
+}
+/***** 页脚样式 *****/
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    color: #fff;
+}
+
+
+
+   

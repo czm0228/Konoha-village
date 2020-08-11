@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kgc.mv.mapper.HouseListMapper">
+    
+    <select id="getHousePrice" resultType="HousePrice">
+        SELECT * FROM house_price
+    </select>
+
+    <select id="getHouseSquareMeter" resultType="HouseSquareMeter">
+        SELECT id,square_meter squareMeter FROM house_square_meter
+    </select>
+
+    <select id="getArea" resultType="Area">
+        SELECT * FROM area
+    </select>
+
+    <select id="getHouseMetro" resultType="HouseMetro">
+        SELECT * FROM house_metro
+    </select>
+
+    <select id="queryHouseList" parameterType="hashmap" resultType="House">
+        SELECT id,area_id AS areaId,address,price,status,square_meter AS squareMeter,metro,img,abstracts,landlord_id AS landlordId FROM house_list
+
+              <trim prefix="where" prefixOverrides="and|or">
+                  <if test="priceId !=null and priceId !=''">
+                      <choose>
+                          <when test="priceId ==0">
+                              and price BETWEEN 0 AND 1000000
+                          </when>
+                          <when test="priceId ==1">
+                              and price BETWEEN 0 AND 1000
+                          </when>
+                          <when test="priceId ==2">
+                              and price BETWEEN 1000 AND 2000
+                          </when>
+                          <when test="priceId ==3">
+                              and price BETWEEN 2000 AND 3000
+                          </when>
+                          <when test="priceId ==4">
+                              and price BETWEEN 3000 AND 4000
+                          </when>
+                          <when test="priceId ==5">
+                              and price BETWEEN 4000 AND 5000
+                          </when>
+                          <when test="priceId ==6">
+                              and price BETWEEN 5000 AND 6000
+                          </when>
+                          <when test="priceId ==7">
+                              and price BETWEEN 6000 AND 7000
+                          </when>
+                          <when test="priceId ==8">
+                              and price BETWEEN 7000 AND 8000
+                          </when>
+                          <when test="priceId ==9">
+                              and price BETWEEN 8000 AND 1000000
+                          </when>
+                      </choose>
+                  </if>
+                  <if test="squareMeterId !=null and squareMeterId !=''">
+                      <choose>
+                          <when test="squareMeterId ==0">
+                              and square_meter BETWEEN 0 AND 10000
+                          </when>
+                          <when test="squareMeterId ==1">
+                              and square_meter BETWEEN 0 AND 10
+                          </when>
+                          <when test="squareMeterId ==2">
+                              and square_meter BETWEEN 10 AND 20
+                          </when>
+                          <when test="squareMeterId ==3">
+                              and square_meter BETWEEN 20 AND 30
+                          </when>
+                          <when test="squareMeterId ==4">
+                              and square_meter BETWEEN 30 AND 40
+                          </when>
+                          <when test="squareMeterId ==5">
+                              and square_meter BETWEEN 40 AND 50
+                          </when>
+                          <when test="squareMeterId ==6">
+                              and square_meter BETWEEN 50 AND 60
+                          </when>
+                          <when test="squareMeterId ==7">
+                              and square_meter BETWEEN 60 AND 70
+                          </when>
+                          <when test="squareMeterId ==8">
+                              and square_meter BETWEEN 70 AND 80
+                          </when>
+                          <when test="squareMeterId ==9">
+                              and square_meter BETWEEN 80 AND 90
+                          </when>
+                          <when test="squareMeterId ==10">
+                              and square_meter BETWEEN 90 AND 100
+                          </when>
+                          <when test="squareMeterId ==11">
+                              and square_meter BETWEEN 100 AND 110
+                          </when>
+                          <when test="squareMeterId ==12">
+                              and square_meter BETWEEN 110 AND 120
+                          </when>
+                          <when test="squareMeterId ==13">
+                              and square_meter BETWEEN 120 AND 130
+                          </when>
+                          <when test="squareMeterId ==14">
+                              and square_meter BETWEEN 130 AND 100000
+                          </when>
+                      </choose>
+                  </if>
+                  <if test="metroId !=null and metroId !=''">
+                      <choose>
+                          <when test="metroId ==0">
+                              and metro BETWEEN 0 AND 100
+                          </when>
+                          <when test="metroId ==1">
+                              and metro=#{metroId}
+                          </when>
+                          <when test="metroId ==2">
+                              and metro=#{metroId}
+                          </when>
+                          <when test="metroId ==3">
+                              and metro=#{metroId}
+                          </when>
+                          <when test="metroId ==4">
+                              and metro=#{metroId}
+                          </when>
+                          <when test="metroId ==5">
+                              and metro=#{metroId}
+                          </when>
+                          <when test="metroId ==6">
+                              and metro=#{metroId}
+                          </when>
+                          <when test="metroId ==7">
+                              and metro=#{metroId}
+                          </when>
+                          <when test="metroId ==8">
+                              and metro=#{metroId}
+                          </when>
+                          <when test="metroId ==9">
+                              and metro=#{metroId}
+                          </when>
+                          <when test="metroId ==10">
+                              and metro=#{metroId}
+                          </when>
+                      </choose>
+                  </if>
+                  <if test="areaId !=null and areaId !=''">
+                      <choose>
+                          <when test="areaId ==0">
+                              and area_id BETWEEN 0 AND 100
+                          </when>
+                          <when test="areaId ==1">
+                              and area_id=#{areaId}
+                          </when>
+                          <when test="areaId ==2">
+                              and area_id=#{areaId}
+                          </when>
+                          <when test="areaId ==3">
+                              and area_id=#{areaId}
+                          </when>
+                          <when test="areaId ==4">
+                              and area_id=#{areaId}
+                          </when>
+                          <when test="areaId ==5">
+                              and area_id=#{areaId}
+                          </when>
+                          <when test="areaId ==6">
+                              and area_id=#{areaId}
+                          </when>
+                          <when test="areaId ==7">
+                              and area_id=#{areaId}
+                          </when>
+                          <when test="areaId ==8">
+                              and area_id=#{areaId}
+                          </when>
+                          <when test="areaId ==9">
+                              and area_id=#{areaId}
+                          </when>
+                          <when test="areaId ==10">
+                              and area_id=#{areaId}
+                          </when>
+                      </choose>
+                  </if>
+              <if test="search !=null and search !=''">
+                  and address LIKE #{search}
+              </if>
+                  <if test="status !=null and status !=''">
+                      and status=#{status}
+                  </if>
+
+              </trim>
+    </select>
+
+
+    <resultMap id="HouseDetails" type="House">
+       <id property="id" column="id"></id>
+        <result property="areaId" column="areaId"></result>
+        <result property="address" column="address"></result>
+        <result property="price" column="price"></result>
+        <result property="status" column="status"></result>
+        <result property="squareMeter" column="squareMeter"></result>
+        <result property="metro" column="metro"></result>
+        <result property="img" column="img"></result>
+        <result property="abstracts" column="abstracts"></result>
+        <result property="landlordId" column="landlordId"></result>
+        <result property="area" column="district"></result>
+        <result property="houseType" column="houseType"></result>
+        <result property="hierarchy" column="hierarchy"></result>
+        <result property="numberPlies" column="numberPlies"></result>
+        <result property="fitment" column="fitment"></result>
+        <result property="orientation" column="orientation"></result>
+        <result property="buildTime" column="buildTime"></result>
+        <result property="plot" column="plot"></result>
+        <result property="floorType" column="fllorType"></result>
+        <result property="rentWay" column="rentWay"></result>
+        <association property="message" javaType="cn.kgc.mv.entity.Message">
+            <result property="name" column="name"></result>
+        </association>
+        <association property="salesman" javaType="cn.kgc.mv.entity.Salesman">
+            <result property="name" column="sName"></result>
+            <result property="img" column="sImg"></result>
+        </association>
+    </resultMap>
+
+    <select id="queryHouseDetails" parameterType="int" resultMap="HouseDetails">
+        SELECT h.id id,h.area_id AS areaId,h.address,h.price,h.status,h.square_meter AS squareMeter,
+        h.metro,h.img,h.abstracts,h.landlord_id AS landlordId,m.name,a.district,h.house_type as houseType,
+        h.hierarchy,h.number_plies as numberPlies,h.fitment,h.orientation,h.build_time as buildTime,h.plot,
+        h.floor_type as fllorType,h.rent_way as rentWay,s.name as sName,s.img as sImg FROM house_list AS h
+        LEFT JOIN AREA AS a ON h.area_id=a.id LEFT JOIN salesman AS s ON h.salesman_id = s.id  LEFT JOIN USER AS u
+        ON h.landlord_id=u.id LEFT JOIN message AS m ON u.id=m.id  WHERE h.id=#{houseId}
+    </select>
+</mapper>

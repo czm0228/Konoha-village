@@ -1,0 +1,87 @@
+{
+    "flag": "true",
+    "msg": "操作成功",
+    "data": [{
+
+        "title": "../img/3.jpg",
+        "publishTime": "2014-07-28",
+        "status": "已发布已审核",
+        "result": "已采用",
+        "columnName": "民政专题-头条",
+        "royalties": 100
+
+    }, {
+
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "已发布已审核",
+        "result": "已采用",
+        "columnName": "民政专题-头条",
+        "royalties": 100
+
+    }, {
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "未提交",
+        "result": "已采用",
+        "columnName": "民政专题-头条",
+        "royalties": 100
+
+    }, {
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "已发布已审核",
+        "result": "已采用",
+        "columnName": "民政专题-头条",
+        "royalties": 100
+    }, {
+
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "未提交"
+    }, {
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "已发布已审核",
+        "result": "已采用",
+        "columnName": "民政专题-头条",
+        "royalties": 100
+
+    }, {
+
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "未提交"
+    }, {
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "未提交"
+    }, {
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "已发布已审核",
+        "result": "已采用",
+        "columnName": "民政专题-头条",
+        "royalties": 100
+    }, {
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "已发布已审核",
+        "result": "已采用",
+        "columnName": "民政专题-头条",
+        "royalties": 100
+
+    }, {
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "已发布已审核",
+        "result": "已采用",
+        "columnName": "民政专题-头条",
+        "royalties": 100
+
+    }, {
+        "title": "关于社会救助报道",
+        "publishTime": "2014-07-28",
+        "status": "未提交"
+    }]
+}
