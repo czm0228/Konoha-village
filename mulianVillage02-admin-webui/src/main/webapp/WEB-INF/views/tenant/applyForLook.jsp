@@ -161,6 +161,11 @@
         }
 
         /* 这结束*/
+        #submit{
+            position: absolute;
+            top: 222px;
+            left: 417px;
+         }
 
     </style>
 
@@ -185,7 +190,18 @@
                 } else if (data == null || data == "") {
                     alert("日期不能为空!")
                 }else {
-                    alert("申请成功!")
+                    $.ajax({
+                        url:"/saveApply",
+                        data:{"userId":${sessionScope.user.id},"houseId":${param.houseId},"userName":name,"phone":phone,"datetime":data},
+                        success:function (result) {
+                            if(result){
+                                alert("申请成功!")
+                                window.location.href="/houseList";
+                            }else {
+                                alert("申请失败!")
+                            }
+                        }
+                    })
                 }
 
             })
@@ -245,7 +261,7 @@
             <br/><br/>
             <%--<input type="hidden" name="houseId" value="${requestScope.houseId}">
             <input type="hidden" name="userId" value="${sessionScope.user.id}">--%>
-            <input class="s" type="submit" value="提交" id="submit">
+            <input class="s" type="button" value="提交" id="submit">
             <input class="s" type="button" value="返回" id="return">
         </form>
 

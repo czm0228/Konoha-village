@@ -1,12 +1,18 @@
 package cn.kgc.mv.controller;
 
 import cn.kgc.mv.entity.*;
+import cn.kgc.mv.service.ApplyForLookService;
 import cn.kgc.mv.service.HouseListService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -18,6 +24,7 @@ public class HouseListController {
 
    @Autowired
    HouseListService houseListService;
+
 
    /*查询价格*/
    @RequestMapping(value = "/getHousePrice")

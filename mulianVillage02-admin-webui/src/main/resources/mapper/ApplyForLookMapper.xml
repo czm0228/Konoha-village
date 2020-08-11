@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kgc.mv.mapper.ApplyForLookMapper">
+
+    <insert id="saveApply" parameterType="Apply">
+        INSERT INTO apply(house_id,user_id,datetime,phone,username) VALUES(#{houseId},#{userId},#{datetime},#{phone},#{userName})
+    </insert>
+
+    <select id="queryApply" parameterType="int" resultType="Apply">
+        SELECT aid id,house_id houseId,user_id userId,datetime,state,phone,username userName FROM apply WHERE house_id=#{houseId} and user_id=#{userId}
+    </select>
+
+<resultMap id="reApply" type="Apply">
+    <id property="id" column="id"></id>
+    <result property="houseId" column="houseId"></result>
+    <result property="userId" column="userId"></result>
+    <result property="datetime" column="datetime"></result>
+    <result property="userName" column="userName"></result>
+    <result property="state" column="state"></result>
+    <association property="house" javaType="cn.kgc.mv.entity.House">
+        <result property="address" column="address"></result>
+    </association>
+</resultMap>
+    <select id="queryMyApply" parameterType="int" resultMap="reApply">
+        SELECT a.aid  id,a.house_id  houseId,a.user_id  userId,a.datetime  datetime,h.address  address,a.username userName,state
+        FROM apply  a LEFT JOIN house_list AS h ON a.house_id=h.id  WHERE a.user_id=#{userId}
+    </select>
+</mapper>

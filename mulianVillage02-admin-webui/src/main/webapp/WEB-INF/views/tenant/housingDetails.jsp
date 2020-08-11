@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../../../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../../../css/main.css"/>
 
-   <%-- <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>--%>
+    <%-- <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>--%>
     <script src="../../../js/bootbox.min.js"></script>
     <style type="text/css">
         .img-span {
@@ -281,6 +281,7 @@
         .pagination a:hover:not(.active) {
             background-color: aquamarine;
         }
+
         .button {
             display: inline-block;
             padding: 7px 7px;
@@ -296,30 +297,33 @@
             box-shadow: 0 9px #999;
         }
 
-        .button:hover {background-color: #00bfff}
+        .button:hover {
+            background-color: #00bfff
+        }
 
         .button:active {
             background-color: #00bfff;
             box-shadow: 0 5px #666;
             transform: translateY(4px);
         }
-        .blue{
+
+        .blue {
             border: 1px solid #ccc;
             padding: 7px 0px;
             border-radius: 3px;
-            padding-left:5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
-        }
-        .blue:focus{
-            border-color: #66afe9;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+            padding-left: 5px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
         }
 
+        .blue:focus {
+            border-color: #66afe9;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+        }
 
 
     </style>
@@ -329,28 +333,31 @@
         $(function () {
 
             $.ajax({
-                url:"/queryHouseDetails",
-                data:{"houseId":${param.id}},
-                success:function (result) {
-                   /* console.log(result)*/
-                  $("#houseImg").attr("src",result.img)
-                    $("#houseImg").attr("alt",result.address)
-                   $("#price").text(result.price)
+                url: "/queryHouseDetails",
+                data: {"houseId":${param.id}},
+                success: function (result) {
+                    /* console.log(result)*/
+                    $("#houseImg").attr("src", result.img)
+                    $("#houseImg").attr("alt", result.address)
+                    $("#price").text(result.price)
                     $("#houseType").text(result.houseType)
-                    $("#hierarchy").text(result.hierarchy+"/"+result.numberPlies)
-                    $("#squareMeter").text(result.squareMeter+"m²")
+                    $("#hierarchy").text(result.hierarchy + "/" + result.numberPlies)
+                    $("#squareMeter").text(result.squareMeter + "m²")
                     $("#fitment").text(result.fitment)
                     $("#orientation").text(result.orientation)
-                    $("#buildTime").text(result.buildTime+"年建")
+                    $("#buildTime").text(result.buildTime + "年建")
                     $("#plot").text(result.plot)
-                    $("#xin").text("楼型："+result.floorType)
-                    $("#zu").text("出租方式："+result.rentWay)
+                    $("#xin").text("楼型：" + result.floorType)
+                    $("#zu").text("出租方式：" + result.rentWay)
                     $("#area").text(result.area)
-                    $("#slaesmanImg").attr("src",result.salesman.img)
+                    $("#slaesmanImg").attr("src", result.salesman.img)
                     $("#slaesmanName").text(result.salesman.name)
-                    if(result.status=="未租赁"){
-                       $("#btn1").text("申请看房");
-                    }else if(result.status=="已租赁"){
+                    if (result.status == "未租赁") {
+
+                        $("#btn1").attr("disabled", false);
+                        $("#btn1").text("申请看房");
+
+                    } else if (result.status == "已租赁") {
                         $("#btn1").attr("disabled", true);
                         $("#btn1").text("已租赁");
                     }
@@ -360,9 +367,22 @@
 
             $("#btn1").click(function () {
                 var username = "${sessionScope.user.userName}";
-                if (username != "" && username!=null) {
+                if (username != "" && username != null) {
+                    $.ajax({
+                        url: "/queryApply",
+                        data: {"houseId":${param.id}, "userId":${sessionScope.user.id}},
+                        success: function (result) {
+                            var houseId =${param.id};
+                            var userId =${sessionScope.user.id};
+                            if (houseId == result.houseId && userId == result.userId) {
 
-                     window.location.href="/applyForLook?houseId="+${param.id};
+                                alert("你已申请看房！")
+
+                            } else {
+                                window.location.href = "/applyForLook?houseId=" +${param.id};
+                            }
+                        }
+                    })
 
                 } else {
                     alert("您还没有登录，请登陆后再申请看房！！")
@@ -376,17 +396,8 @@
             });
 
 
-
-            <%--${requestScope.house.id == requestScope.apply.houseId} &&
-            ${sessionScope.user.id == requestScope.apply.userId}--%>
-           /* if ()
-            {
-                $("#btn1").attr("disabled", true);
-                $("#btn1").text("已申请");
-            }*/
-
-
-
+            <%----%>
+            /**/
 
 
             //判断是否在前面加0
@@ -413,17 +424,17 @@
 
                 if (userId != "") {
                     var value = $("#commentText").val();
-                    if(value==""){
+                    if (value == "") {
                         alert("评论的内容不能为空!");
                         return false
-                        ;
+                            ;
                     }
 
                     var url = "/CommentServlet";
 
                     var param = {
                         "userId": userId,
-                        "houseId":11<%--${requestScope.house.id}--%>,
+                        "houseId": 11<%--${requestScope.house.id}--%>,
                         "value": value,
                         "now": now
                     };
@@ -456,13 +467,15 @@
 			</span>
         <span class="img-span" id="img-span"> <br>
 
-				<p>价格:<span class="font" id="price">${requestScope.house.price}</span> <span class="fonts">元/月</span></p> <br>
+				<p>价格:<span class="font" id="price">${requestScope.house.price}</span> <span
+                        class="fonts">元/月</span></p> <br>
 
                   <table border="0" cellpadding="0" cellspacing="0" style="width: 600px;border-collapse: collapse;">
              <tr>
                <td style="height: 80px;border-collapse: collapse;">
                    <p class="big" id="houseType">${requestScope.house.houseType}</p>
-                      <p class="xiao" id="hierarchy">${requestScope.house.hierarchy}/${requestScope.house.numberPlies}层</p>
+                      <p class="xiao"
+                         id="hierarchy">${requestScope.house.hierarchy}/${requestScope.house.numberPlies}层</p>
                </td>
 
                  <td style="height: 80px;border-collapse: collapse;">
@@ -482,7 +495,7 @@
 
   <div class="div">
 
-               <p class="fonts-size" >小区：<a href="#" id="plot">${requestScope.house.plot}</a></p> <br>
+               <p class="fonts-size">小区：<a href="#" id="plot">${requestScope.house.plot}</a></p> <br>
                <p class="fonts-size" id="xin">${requestScope.house.floorType}</p> <br>
                <p class="fonts-size" id="zu">${requestScope.house.rentWay}</p> <br>
                <p class="fonts-size" id="shi">看房时间：随时看房</p> <br>
@@ -513,7 +526,7 @@
 			</span>
     </div>
     <div>
-                <%--<a href="/AddApplyServlet?houseId=${requestScope.house.id}"></a>--%>
+        <%--<a href="/AddApplyServlet?houseId=${requestScope.house.id}"></a>--%>
         <button id="btn1" class="login2" type="button"></button>
 
         <button id="btn2" class="login1" type="button">返回</button>

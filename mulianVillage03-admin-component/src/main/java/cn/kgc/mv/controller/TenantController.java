@@ -33,4 +33,10 @@ public class TenantController {
     public String applyWaitLook(){
        return "tenant/applyForLook";
    }
+
+   /*申请看房列表*/
+   @RequestMapping(value = "/myApplyFor")
+    public String myApplyFor(){
+       return "tenant/myApplyFor";
+   }
 }

@@ -75,7 +75,7 @@
             <a class="nav-data-maintenance nav" title="我的申请" href="javascript:;"><img class="icon" src="../../img/icon-maintenance.png">我的申请<img class="nav-down" src="../../img/nav-down.png"></a>
             <ul class="submenu hide">
                 <li>
-                    <a title="看房申请列表" href="/myApplyFor?userId=${sessionScope.user.id}" target="content"><img class="icon-sub" src="../../img/icon-infor.png">看房申请列表</a>
+                    <a title="看房申请列表" href="/myApplyFor" target="content"><img class="icon-sub" src="../../img/icon-infor.png">看房申请列表</a>
                 </li>
                 <li>
                     <a title="待看列表" href="/ForTheLease?userId=${sessionScope.user.id}" target="content"><img class="icon-sub" src="../../img/icon-infor.png">待看列表</a>
