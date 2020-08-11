@@ -14,6 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="github" target="1.7" />
       <module name="mulianVillage01-admin-parent" target="1.7" />
       <module name="mulianVillage02-admin-webui" target="1.7" />
       <module name="mulianVillage03-admin-component" target="1.7" />

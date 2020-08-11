@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/github" />
     <file type="web" url="file://$PROJECT_DIR$/mulianVillage01-admin-parent" />
     <file type="web" url="file://$PROJECT_DIR$/mulianVillage02-admin-webui" />
     <file type="web" url="file://$PROJECT_DIR$/mulianVillage03-admin-component" />
@@ -14,6 +15,7 @@
         <option value="$PROJECT_DIR$/mulianVillage01-admin-parent/pom.xml" />
         <option value="$PROJECT_DIR$/mulianVillage05-commocin-util/pom.xml" />
         <option value="$PROJECT_DIR$/mulianVillage06-commocin-reverse/pom.xml" />
+        <option value="$PROJECT_DIR$/github/pom.xml" />
       </list>
     </option>
   </component>
