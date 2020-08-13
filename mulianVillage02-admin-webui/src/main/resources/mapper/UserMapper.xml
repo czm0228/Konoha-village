@@ -19,6 +19,10 @@
 
     <select id="queryUser" parameterType="User" resultType="User">
       SELECT id,username userName,password,phone_number phoneNumber,type,creditLine FROM user where
-      username=#{userName} and password=#{password} and type=#{type}
+      username=#{userName}
     </select>
+
+    <update id="updateUsercreditLine" parameterType="int">
+        UPDATE user set creditLine=creditLine-10 WHERE id=#{userId}
+    </update>
 </mapper>

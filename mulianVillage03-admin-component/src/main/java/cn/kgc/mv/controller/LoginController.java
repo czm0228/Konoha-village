@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     /*登录页面*/
-    @RequestMapping(value = "login")
+    @RequestMapping(value = "/login")
     public String login(){
         return "login";
     }

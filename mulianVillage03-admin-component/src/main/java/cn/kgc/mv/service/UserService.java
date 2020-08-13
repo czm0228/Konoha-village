@@ -19,4 +19,7 @@ public interface UserService {
 
     /*根据用户名密码 用户类型查询用户*/
     User queryUser(User user);
+
+    /*修改用户信用度*/
+    boolean updateUsercreditLine(Integer userId);
 }

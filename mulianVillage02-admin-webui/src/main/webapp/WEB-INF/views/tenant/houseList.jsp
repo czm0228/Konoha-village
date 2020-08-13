@@ -19,8 +19,13 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../../js/bootbox.min.js"></script>
+    <link rel="stylesheet" href="../../../css/pagination.css">
+    <script type="text/javascript" src="../../../js/jquery.pagination.js"></script>
     <script type="text/javascript">
         $(function () {
+
+
+
 
             /*查询价格*/
             $.ajax({
@@ -100,12 +105,85 @@
                 var search = $("#Ktext").val();
                /* alert(priceId+" "+squareMeterId+" "+metroId+" "+areaId+" "+search)*/
                 queryHouseList(priceId, squareMeterId, metroId, areaId, search);
-
+                // 调用专门的函数初始化分页导航条
+                initPagination();
             })
+
+           // 调用专门的函数初始化分页导航条
+            initPagination();
         })
 
+
+
+        // 生成页码导航条的函数
+        function initPagination() {
+
+            var priceId = $("#price").val();
+            var squareMeterId = $("#area").val();
+            var metroId = $("#address").val();
+            var areaId = $("#region").val();
+            var search = $("#Ktext").val();
+
+         $.ajax({
+             url:"/queryHouseList",
+             data:{
+                 "priceId": priceId,
+                 "squareMeterId": squareMeterId,
+                 "metroId": metroId,
+                 "areaId": areaId,
+                 "search": search,
+             },
+             success:function (result) {
+                 // 获取总记录数
+                 var totalRecord = result.total;
+
+                 // 声明一个JSON对象存储Pagination要设置的属性
+                 var properties = {
+                     num_edge_entries: 3,								// 边缘页数
+                     num_display_entries: 5,								// 主体页数
+                     callback: pageSelectCallback,						// 指定用户点击“翻页”的按钮时跳转页面的回调函数
+                     items_per_page: result.pageSize,	// 每页要显示的数据的数量
+                     current_page: result.pageNum - 1,	// Pagination内部使用pageIndex来管理页码，pageIndex从0开始，pageNum从1开始，所以要减一
+                     prev_text: "上一页",									// 上一页按钮上显示的文本
+                     next_text: "下一页"									// 下一页按钮上显示的文本
+                 };
+
+                 // 生成页码导航条
+                 $("#Pagination").pagination(totalRecord, properties);
+             }
+
+         })
+
+        }
+
+        // 回调函数的含义：声明出来以后不是自己调用，而是交给系统或框架调用
+        // 用户点击“上一页、下一页、1、2、3……”这样的页码时调用这个函数实现页面跳转
+        // pageIndex是Pagination传给我们的那个“从0开始”的页码
+        function pageSelectCallback(pageIndex, jQuery) {
+
+            // 根据pageIndex计算得到pageNum
+            var pageNum = pageIndex + 1;
+
+            // 跳转页面
+            //调用queryHouseList()；
+            var priceId = $("#price").val();
+            var squareMeterId = $("#area").val();
+            var metroId = $("#address").val();
+            var areaId = $("#region").val();
+            var search = $("#Ktext").val();
+            /* alert(priceId+" "+squareMeterId+" "+metroId+" "+areaId+" "+search)*/
+            queryHouseList(priceId, squareMeterId, metroId, areaId, search,pageNum);
+
+            // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
+            return false;
+        }
+
+
+
+
+
         /*查询房源*/
-        function queryHouseList(priceId, squareMeterId, metroId, areaId, search) {
+        function queryHouseList(priceId, squareMeterId, metroId, areaId, search,pageNum) {
             $.ajax({
                 url: "/queryHouseList",
                 data: {
@@ -113,13 +191,14 @@
                     "squareMeterId": squareMeterId,
                     "metroId": metroId,
                     "areaId": areaId,
-                    "search": search
+                    "search": search,
+                    "pageNum":pageNum
                 },
                 success: function (result) {
                     /*console.log(result)*/
 
                     var str = "";
-                    $(result).each(function () {
+                    $(result.list).each(function () {
                         str += "<tr>" +
                             "<td>" + this.id + "</td>" +
                             "<td><img src='" + this.img + "' id='img-span'></td>" +
@@ -269,6 +348,14 @@
 
         <tbody id="show_tbody">
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6" align="center">
+                <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
+            </td>
+        </tr>
+
+        </tfoot>
     </table>
 
 </div>

@@ -20,15 +20,25 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
+    /*退出登录*/
+    @RequestMapping(value = "/exitToLogin")
+    public String exitToLogin(HttpSession session){
+        session.invalidate();
+        return "redirect:/login";
+    }
+
+
+
     /*查询用户*/
-    @ResponseBody
     @RequestMapping(value = "/queryUser")
-    public User queryUser(User user,HttpSession session){
+    public String queryUser(User user,HttpSession session){
+
       User users=userService.queryUser(user);
       if(users!=null){
           session.setAttribute("user",users);
       }
-       return users;
+       return "redirect:/frameTenant";
     }
 
 

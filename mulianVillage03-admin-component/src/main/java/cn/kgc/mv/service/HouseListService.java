@@ -1,6 +1,7 @@
 package cn.kgc.mv.service;
 
 import cn.kgc.mv.entity.*;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -23,7 +24,8 @@ public interface HouseListService {
     public List<HouseMetro> getHouseMetro();
 
     /*查询房源*/
-    List<House> queryHouseList(Integer priceId, Integer squareMeterId, Integer metroId, Integer areaId, String search);
+    /*List<House> queryHouseList(Integer priceId, Integer squareMeterId, Integer metroId, Integer areaId, String search);*/
+    public PageInfo<House> queryHouseList(Integer priceId, Integer squareMeterId, Integer metroId, Integer areaId, String search, Integer pageNum, Integer pageSize);
 
     /*查看房源详情*/
     House queryHouseDetails(Integer houseId);

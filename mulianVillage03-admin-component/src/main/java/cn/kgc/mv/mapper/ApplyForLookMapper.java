@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: czm
@@ -21,4 +22,7 @@ public interface ApplyForLookMapper {
 
     /*查询申请看房*/
     List<Apply> queryMyApply(@Param("userId") Integer userId);
+
+    /*取消申请*/
+    Integer updateApply(Map<String, Object> map);
 }

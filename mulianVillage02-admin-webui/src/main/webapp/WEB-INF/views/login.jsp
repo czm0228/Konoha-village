@@ -19,7 +19,7 @@
     <script type="text/javascript">
         $(function () {
 
-            $("#login").click(function () {
+           /* $("#login").click(function () {
 
                 var username=$("#username").val();
                 var password=$("#password").val();
@@ -34,7 +34,7 @@
                         url:"/queryUser",
                         data:{"userName":username,"password":password,"type":type},
                         success:function (result) {
-                            /*console.log(result);*/
+                            /!*console.log(result);*!/
                             if(result==null || result==""){
                                 alert("用户名密码错误!")
                             }else{
@@ -49,7 +49,7 @@
                     })
                 }
 
-            })
+            })*/
 
         })
     </script>
@@ -59,9 +59,9 @@
 
     <div class="container">
         <h1>房屋租赁网站</h1>
-        <form class="form" id="loginform" action="#" method="post">
-            <div style="color: red;position: absolute; top: -10px; left: 239px;">${requestScope.msg != null? msg:""}</div>
-            <div><input type="text" name="username" id="username" placeholder="用户名" value="${param.username}"></div>
+        <form class="form" id="loginform" action="/queryUser" method="post">
+            <div style="color: red;position: absolute; top: -10px; left: 239px;">${requestScope.exception.message}</div>
+            <div><input type="text" name="userName" id="username" placeholder="用户名" value="${param.userName}"></div>
             <div><input type="password" id="password" name="password" placeholder="密码"></div>
             <div>
                 <%-- <label class="radio inline">
@@ -75,7 +75,7 @@
                 </label>
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href="/register">没有账号？点我</a>
             </div>
-            <button type="button" id="login">登录</button>
+            <button type="submit" id="login">登录</button>
         </form>
 
     </div>

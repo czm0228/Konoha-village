@@ -21,4 +21,6 @@ public interface UserMapper {
     /*根据用户名密码查询用户*/
     public User queryUser(User user);
 
+    /*修改用户信用度*/
+    Integer updateUsercreditLine(@Param("userId") Integer userId);
 }

@@ -18,4 +18,7 @@ public interface ApplyForLookService {
 
     /*查询申请看房*/
     List<Apply> queryMyApply(Integer userId);
+
+    /*取消申请*/
+    boolean closeApply(Integer userId, Integer applyId, String state);
 }

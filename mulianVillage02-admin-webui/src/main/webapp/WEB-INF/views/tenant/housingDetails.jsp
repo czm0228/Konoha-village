@@ -367,13 +367,18 @@
 
             $("#btn1").click(function () {
                 var username = "${sessionScope.user.userName}";
+                var userId= "${sessionScope.user.id}";
+
                 if (username != "" && username != null) {
+
+
+
                     $.ajax({
                         url: "/queryApply",
-                        data: {"houseId":${param.id}, "userId":${sessionScope.user.id}},
+                        data: {"houseId":${param.id},"userId":userId},
                         success: function (result) {
                             var houseId =${param.id};
-                            var userId =${sessionScope.user.id};
+                            var userId ="${sessionScope.user.id}";
                             if (houseId == result.houseId && userId == result.userId) {
 
                                 alert("你已申请看房！")
@@ -398,7 +403,6 @@
 
             <%----%>
             /**/
-
 
             //判断是否在前面加0
             function getNow(s) {

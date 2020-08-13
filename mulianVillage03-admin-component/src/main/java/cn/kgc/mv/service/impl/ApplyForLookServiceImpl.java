@@ -6,7 +6,9 @@ import cn.kgc.mv.service.ApplyForLookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: czm
@@ -32,5 +34,15 @@ public class ApplyForLookServiceImpl implements ApplyForLookService{
     @Override
     public List<Apply> queryMyApply(Integer userId) {
         return applyForLookMapper.queryMyApply(userId);
+    }
+
+    @Override
+    public boolean closeApply(Integer userId, Integer applyId, String state) {
+        Map<String,Object> map= new HashMap();
+        map.put("userId",userId);
+        map.put("applyId",applyId);
+        map.put("state",state);
+        map.put("state2","已取消");
+        return applyForLookMapper.updateApply(map)==1;
     }
 }

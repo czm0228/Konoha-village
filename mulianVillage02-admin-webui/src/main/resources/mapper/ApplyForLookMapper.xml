@@ -27,4 +27,9 @@
         SELECT a.aid  id,a.house_id  houseId,a.user_id  userId,a.datetime  datetime,h.address  address,a.username userName,state
         FROM apply  a LEFT JOIN house_list AS h ON a.house_id=h.id  WHERE a.user_id=#{userId}
     </select>
+
+    <update id="updateApply" parameterType="hashMap">
+        UPDATE apply SET state=#{state2} WHERE aid=#{applyId} AND user_id=#{userId} AND state=#{state}
+    </update>
+
 </mapper>

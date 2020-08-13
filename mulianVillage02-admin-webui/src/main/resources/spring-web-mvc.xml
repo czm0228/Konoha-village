@@ -20,4 +20,38 @@
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
 
+
+    <!--基于xml异常的映射-->
+    <bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--key是指代异常类型   标签体中内容 为出现异常之后对应的逻辑视图名-->
+                <!--system-error出现key所指定的异常要添跳转到的页面-->
+                <prop key="java.lang.Exception">system-error</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 注册拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- mvc:mapping配置要拦截的资源 -->
+            <!-- /*对应一层路径，比如：/aaa -->
+            <!-- /**对应多层路径，比如：/aaa/bbb或/aaa/bbb/ccc或/aaa/bbb/ccc/ddd -->
+            <mvc:mapping path="/**"/>
+
+            <!-- mvc:exclude-mapping配置不拦截的资源 -->
+            <mvc:exclude-mapping path="/login"/><!--最开始的不拦截-->
+            <mvc:exclude-mapping path="/queryUser"/><!--点击登录的时候不拦截-->
+            <mvc:exclude-mapping path="/exitToLogin"/><!--退出不拦截-->
+            <!--注册不拦截-->
+            <mvc:exclude-mapping path="/register"/>
+            <!--首页不拦截-->
+            <mvc:exclude-mapping path="/frameHomePag"/>
+
+
+            <!-- 配置拦截器类 -->
+            <bean class="cn.kgc.mv.controller.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

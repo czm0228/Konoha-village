@@ -78,8 +78,9 @@
         $(function () {
 
 
-            $.ajax({
 
+
+            $.ajax({
                 url: "/queryMyApply",
                 data: {"userId":${sessionScope.user.id}},
                 success: function (result) {
@@ -93,7 +94,7 @@
                             "<td>" + this.datetime + "</td>" +
                             "<td>";
                         if (this.state == "已同意" || this.state == "已申请") {
-                            str += "<button class='btn btn-primary search_btn' type='button' onclick='close("+this.id+")'>取消申请</button>" +
+                            str += "<button class='btn btn-primary search_btn edit' type='button' onclick='close2("+this.id+",\""+this.state+"\",this)'>取消申请</button>" +
                                 "</td>" +
                                 "</tr>";
                         } else if (this.state == "不同意") {
@@ -121,11 +122,31 @@
 
             })
 
-            function close(applyId) {
-                alert(applyId)
-            }
+
 
         })
+
+        function close2(id,state,obj) {
+            alert(state)
+            var userId="${sessionScope.user.id}";
+            if (!confirm("取消申请将会减少你的信用度，确定取消吗？")) {
+                return false;
+            }
+            $.ajax({
+                url:"/closeApply",
+                data:{"userId":userId,"applyId":id,"state":state},
+                success:function (result) {
+                    if(result){
+                        $(obj).text("已取消");
+                        $(obj).attr("disabled",true);
+                        $(obj).parents("tr").find("td:eq(2)").text("已取消");
+                    }else {
+                        alert("取消失败!")
+                    }
+                }
+
+            })
+        }
 
     </script>
 </head>
@@ -135,7 +156,7 @@
 </div>--%>
 <div class="box">
     <div class="content">
-        <form action="/MyApplyForServlet?userId=${sessionScope.user.id}" method="post">
+        <form >
             <!--搜索输入框及查询、重置按钮-->
             <div class="container content_width">
 
@@ -178,60 +199,7 @@
         </thead>
 
         <tbody id="show_tbody">
-        <%
-            int i = 1;
-            request.setAttribute("i", i);
-        %>
-        <c:forEach items="${requestScope.list}" var="list">
-            <tr>
-                <td>${requestScope.i}</td>
-                <td>${list.house.address}</td>
-                <td>${list.state}</td>
-                <td>${list.datetime}</td>
-                <c:choose>
-                    <c:when test="${list.state=='已申请' || list.state=='已同意'}">
-                        <td>
-                            <a href="/WithdrawServlet?userId=${sessionScope.user.id}&houseId=${list.houseId}&state=${list.state}"
-                               class="edit">
-                                <button class="btn btn-primary search_btn" type="button">取消申请</button>
-                            </a>
-                        </td>
-                    </c:when>
-                    <c:when test="${list.state=='不同意'}">
-                        <td>
-                            <button class="btn btn-primary search_btn" type="button" disabled>未同意</button>
-                        </td>
-                    </c:when>
-                    <c:when test="${list.state=='已看房'}">
-                        <td>
-                            <a href="#" class="edit1">
-                                <button class="btn btn-primary search_btn" type="button" disabled>已看房</button>
-                            </a>
-                        </td>
-                    </c:when>
-                    <c:when test="${list.state=='已取消'}">
-                        <td>
-                            <a href="#" class="edit2">
-                                <button class="btn btn-primary search_btn" type="button" disabled>已取消</button>
-                            </a>
-                        </td>
-                    </c:when>
-                    <c:when test="${list.state=='已完成'}">
-                        <td>
-                            <a href="#" class="edit2">
-                                <button class="btn btn-primary search_btn" type="button" disabled>已完成</button>
-                            </a>
-                        </td>
-                    </c:when>
-                </c:choose>
 
-            </tr>
-            <% i++;
-                request.setAttribute("i", i);
-            %>
-        </c:forEach>
-        <!-- <a href="#" class="edit">编辑</a>
-         <a href="#" class="del">删除</a>-->
         </tbody>
     </table>
 </div>
@@ -242,22 +210,20 @@
 <script src="../../js/jquery-1.9.1.min.js"></script>
 <script src="../../js/jquery.selectlist.js"></script>
 --%>
-<script type="text/javascript" src="./js/birthday.js"></script>
+<script type="text/javascript" src="../../../js/birthday.js"></script>
 <script type="text/javascript">
-    $(function () {
+ /*   $(function () {
         $(".edit").click(function () {
-            if (!confirm("取消申请将会减少你的信用度，确定取消吗？")) {
-                return false;
-            }
+
         })
 
-        $.ms_DatePicker({
+      /!*  $.ms_DatePicker({
             YearSelector: ".sel_year",
             MonthSelector: ".sel_month",
             DaySelector: ".sel_day"
         });
-        $.ms_DatePicker();
-    })
+        $.ms_DatePicker();*!/
+    })*/
 
 </script>
 
