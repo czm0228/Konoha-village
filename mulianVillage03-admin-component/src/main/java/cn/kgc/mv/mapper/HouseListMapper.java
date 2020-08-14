@@ -12,6 +12,9 @@ import java.util.Map;
  */
 public interface HouseListMapper {
 
+    /*分页*/
+    List<House> selectAdminByKeyword(String keyword);
+
     /*查询价格*/
     public List<HousePrice> getHousePrice();
 
