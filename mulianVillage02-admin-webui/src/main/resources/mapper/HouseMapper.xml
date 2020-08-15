@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kgc.mv.mapper.HouseMapper">
+
+    <insert id="saveHouse" parameterType="House">
+
+        INSERT INTO House_list(area_id,address,price,status,square_Meter,metro,img,abstracts,landlord_Id,thumb_Up_For,house_type,hierarchy,number_plies,fitment,orientation,build_time,plot,floor_type,rent_way) values(#{areaId},#{address},#{price},#{status},#{squareMeter},#{metro},#{img},#{abstracts},#{landlordId},#{thumbUpFor},#{houseType},#{hierarchy},#{numberPlies},#{fitment},#{orientation},#{buildTime},#{plot},#{floorType},#{rentWay})
+
+    </insert>
+    
+    <select id="allHouseList" resultType="House">
+        SELECT * FROM House_list
+    </select>
+
+    <delete id="delHouseById" parameterType="int">
+        DELETE FROM House_list WHERE id=#{id}
+    </delete>
+
+    <select id="HouseById" parameterType="int" resultType="House">
+        SELECT  address,price,status,square_meter as squareMeter,metro,thumb_up_for as thumbUpFor,img,abstracts,house_type as houseType,hierarchy,number_plies as numberPlies,fitment,orientation,build_time as buildTime,plot,floor_type as floorType,rent_way as rentWay   FROM House_list where id=#{id}
+    </select>
+
+    <update id="updateHouse" parameterType="House">
+        UPDATE House_list
+        <set>
+            <if test="address!=null &amp;&amp; address!=''">address=#{address},</if>
+            <if test="price!=null">price=#{price},</if>
+            <if test="status!=null &amp;&amp; status!=''">status=#{status},</if>
+            <if test="squareMeter!=null">square_meter=#{squareMeter},</if>
+            <if test="metro!=null">metro=#{metro},</if>
+            <if test="img!=null &amp;&amp; img!=''">img=#{img},</if>
+            <if test="thumbUpFor!=null">thumb_up_for=#{thumbUpFor},</if>
+            <if test="abstracts!=null &amp;&amp; abstracts!=''">abstracts=#{abstracts},</if>
+            <if test="houseType!=null &amp;&amp; houseType!=''">house_type=#{houseType},</if>
+            <if test="hierarchy!=null &amp;&amp; hierarchy!=''">hierarchy=#{hierarchy},</if>
+            <if test="numberPlies!=null">number_plies=#{numberPlies},</if>
+            <if test="fitment!=null &amp;&amp; fitment!=''">fitment=#{fitment},</if>
+            <if test="orientation!=null &amp;&amp; orientation!=''">orientation=#{orientation},</if>
+            <if test="buildTime!=null &amp;&amp; buildTime!=''">build_time=#{buildTime},</if>
+            <if test="plot!=null &amp;&amp; plot!=''">plot=#{plot},</if>
+            <if test="floorType!=null &amp;&amp; floorType!=''">floor_type=#{floorType},</if>
+            <if test="rentWay!=null &amp;&amp; rentWay!=''">rent_way=#{rentWay}</if>
+
+        </set>
+        <where>
+            <if test="id!=null">id=#{id}</if>
+        </where>
+    </update>
+
+</mapper>
