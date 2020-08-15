@@ -21,7 +21,7 @@ public interface ApplyForLookMapper {
     Apply queryApply(@Param("houseId") Integer houseId, @Param("userId") Integer userId);
 
     /*查询申请看房*/
-    List<Apply> queryMyApply(@Param("userId") Integer userId);
+    List<Apply> queryMyApply(Map<String,Object> map);
 
     /*取消申请*/
     Integer updateApply(Map<String, Object> map);

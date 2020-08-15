@@ -12,20 +12,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 
-    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <%--<link rel="stylesheet" type="text/css" href="../../css/jquery.selectlist.css">--%>
-    <script src="../../../js/jquery.min.js"></script>
-    <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../../js/bootbox.min.js"></script>
-    <link rel="stylesheet" href="../../../css/pagination.css">
-    <script type="text/javascript" src="../../../js/jquery.pagination.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="${pageContext.request.contextPath}/js/bootbox.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagination.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.pagination.js"></script>
     <script type="text/javascript">
         $(function () {
-
-
-
 
             /*查询价格*/
             $.ajax({
@@ -173,7 +170,6 @@
             var search = $("#Ktext").val();
             /* alert(priceId+" "+squareMeterId+" "+metroId+" "+areaId+" "+search)*/
             queryHouseList(priceId, squareMeterId, metroId, areaId, search,pageNum);
-
             // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
             return false;
         }
@@ -197,20 +193,37 @@
                 success: function (result) {
                     /*console.log(result)*/
 
-                    var str = "";
-                    $(result.list).each(function () {
-                        str += "<tr>" +
-                            "<td>" + this.id + "</td>" +
-                            "<td><img src='" + this.img + "' id='img-span'></td>" +
-                            "<td>" + this.price + "元</td>" +
-                            "<td>" + this.squareMeter + "m²</td>" +
-                            "<td>" + this.status + "</td>" +
-                            "<td>" +
-                            "<button class='btn btn-primary search_btn' type='button' onclick='queryHouse("+this.id+")'>查看</button>" +
-                            "</td>" +
-                            "</tr>"
-                    })
-                    $("tbody").empty().append(str);
+//                       if(result == null || result == undefined || result.list == null || result.list.length == 0){
+//                           $("tbody").empty();
+//                           $("#rolePageBody").empty().append("<td colspan='4' align='center'>抱歉！没有查询到您搜索的数据！</td>");
+//                           return false;
+//                       }
+
+                    if(result == null || result == undefined || result.list == null || result.list.length == 0){
+
+                        $("#rolePageBody1").hide();
+                        $("#rolePageBody2").show();
+                        $("tbody").empty();
+                        return false;
+                    }
+                        var str = "";
+                        $(result.list).each(function () {
+                            str += "<tr>" +
+                                "<td style='overflow:hidden'>" + this.id + "</td>" +
+                                "<td style='max-width:300px'><img src='" + this.img + "' id='img-span'></td>" +
+                                "<td>" + this.price + "元</td>" +
+                                "<td>" + this.squareMeter + "m²</td>" +
+                                "<td>" + this.status + "</td>" +
+                                "<td>" +
+                                "<button class='btn btn-primary search_btn' type='button' onclick='queryHouse("+this.id+")'>查看</button>" +
+                                "</td>" +
+                                "</tr>"
+                        })
+                        $("#rolePageBody1").show();
+                        $("#rolePageBody2").hide();
+                        $("tbody").empty().append(str);
+
+
                 }
             })
         }
@@ -337,26 +350,31 @@
     <table id="tb" class="table">
         <thead>
         <tr>
-            <th>序列号</th>
+            <th>序号</th>
             <th>图片</th>
             <th>价格</th>
             <th>面积</th>
             <th>状态</th>
-            <th>操作</th>
+            <th colspan="2">操作</th>
         </tr>
         </thead>
 
         <tbody id="show_tbody">
         </tbody>
-        <tfoot>
+        <tfoot align="center">
+
         <tr>
-            <td colspan="6" align="center">
-                <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
+            <td colspan="6" align="center" id="rolePageBody1">
+                <div id="Pagination" class="pagination" style="margin: 0px auto"><!-- 这里显示分页 --></div>
+            </td>
+            <td id="rolePageBody2" colspan="6"  align="center">
+                <div style="margin: 0px auto">抱歉没有你查找的内容</div>
             </td>
         </tr>
 
         </tfoot>
     </table>
+
 
 </div>
 

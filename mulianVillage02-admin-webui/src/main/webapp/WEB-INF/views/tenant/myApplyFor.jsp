@@ -19,6 +19,9 @@
     <script src="../../../js/bootbox.min.js"></script>
     <script src="../../../js/jquery-1.8.3.js"></script>
     <script type="text/javascript" src="../../../js/jquery.js"></script>
+    <script type="text/javascript" src="../../../js/birthday.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagination.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.pagination.js"></script>
     <style type="text/css">
         #show_tbody td {
             font-size: 15px;
@@ -78,56 +81,170 @@
         $(function () {
 
 
+            $.ms_DatePicker({
+                YearSelector: ".sel_year",
+                MonthSelector: ".sel_month",
+                DaySelector: ".sel_day"
+            });
+            $.ms_DatePicker();
 
 
+
+
+            var year=getUrlParam("year");
+            var month=getUrlParam("month");
+            var day=getUrlParam("day");
+            var state=getUrlParam("state");
+            var search=getUrlParam("search");
+            if(year == "" || year==null && month=="" || month==null && day=="" || day==null && state=="" || state==null){
+                queryMyApply(0,0,0,"","");
+            }
+
+
+           $("#queryMyapplyfor").click(function () {
+               var year=$("#sel_year").val();
+             var month=$("#sel_month").val();
+             var day=$("#sel_day").val();
+             var state=$("#address").val();
+               var search=$("#Ktext").val();
+             queryMyApply(year,month,day,state,search);
+               // 调用专门的函数初始化分页导航条
+               initPagination();
+           })
+
+            // 调用专门的函数初始化分页导航条
+            initPagination();
+        })
+
+
+        // 生成页码导航条的函数
+        function initPagination() {
+            var year=$("#sel_year").val();
+            var month=$("#sel_month").val();
+            var day=$("#sel_day").val();
+            var state=$("#address").val();
+            var search=$("#Ktext").val();
             $.ajax({
-                url: "/queryMyApply",
-                data: {"userId":${sessionScope.user.id}},
-                success: function (result) {
-                    var str = "";
-                    var i = 1;
-                    $(result).each(function () {
-                        str += "<tr>" +
-                            "<td>" + i + "</td>" +
-                            "<td>" + this.house.address + "</td>" +
-                            "<td>" + this.state + "</td>" +
-                            "<td>" + this.datetime + "</td>" +
-                            "<td>";
-                        if (this.state == "已同意" || this.state == "已申请") {
-                            str += "<button class='btn btn-primary search_btn edit' type='button' onclick='close2("+this.id+",\""+this.state+"\",this)'>取消申请</button>" +
-                                "</td>" +
-                                "</tr>";
-                        } else if (this.state == "不同意") {
-                            str += "<button class='btn btn-primary search_btn' type='button' disabled>未同意</button>" +
-                                "</td>" +
-                                "</tr>";
-                        } else if (this.state == "已看房") {
-                            str += "<button class='btn btn-primary search_btn' type='button' disabled>已看房</button>" +
-                                "</td>" +
-                                "</tr>";
-                        } else if (this.state == "已取消") {
-                            str += "<button class='btn btn-primary search_btn' type='button' disabled>已取消</button>" +
-                                "</td>" +
-                                "</tr>";
-                        } else if (this.state == "已完成") {
-                            str += "<button class='btn btn-primary search_btn' type='button' disabled>已完成</button>" +
-                                "</td>" +
-                                "</tr>";
-                        }
+                url:"/queryMyApply",
+                data: {"userId":${sessionScope.user.id},"year":year,"month":month,"day":day,"state":state,"search":search},
+                success:function (result) {
+                    // 获取总记录数
+                    var totalRecord = result.total;
 
-                        i++;
-                    })
-                    $("tbody").empty().append(str);
+                    // 声明一个JSON对象存储Pagination要设置的属性
+                    var properties = {
+                        num_edge_entries: 3,								// 边缘页数
+                        num_display_entries: 5,								// 主体页数
+                        callback: pageSelectCallback,						// 指定用户点击“翻页”的按钮时跳转页面的回调函数
+                        items_per_page: result.pageSize,	// 每页要显示的数据的数量
+                        current_page: result.pageNum - 1,	// Pagination内部使用pageIndex来管理页码，pageIndex从0开始，pageNum从1开始，所以要减一
+                        prev_text: "上一页",									// 上一页按钮上显示的文本
+                        next_text: "下一页"									// 下一页按钮上显示的文本
+                    };
+
+                    // 生成页码导航条
+                    $("#Pagination").pagination(totalRecord, properties);
                 }
-
             })
 
 
+        }
 
-        })
+        // 回调函数的含义：声明出来以后不是自己调用，而是交给系统或框架调用
+        // 用户点击“上一页、下一页、1、2、3……”这样的页码时调用这个函数实现页面跳转
+        // pageIndex是Pagination传给我们的那个“从0开始”的页码
+        function pageSelectCallback(pageIndex, jQuery) {
 
+            // 根据pageIndex计算得到pageNum
+            var pageNum = pageIndex + 1;
+
+            // 跳转页面
+            var year=$("#sel_year").val();
+            var month=$("#sel_month").val();
+            var day=$("#sel_day").val();
+            var state=$("#address").val();
+            var search=$("#Ktext").val();
+            queryMyApply(year,month,day,state,search,pageNum);
+
+            // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
+            return false;
+        }
+
+
+
+         /*查询申请*/
+         function queryMyApply(year,month,day,state,search,pageNum) {
+             $.ajax({
+                 url: "/queryMyApply",
+                 data: {"userId":${sessionScope.user.id},"year":year,"month":month,"day":day,"state":state,"search":search,"pageNum":pageNum},
+                 success: function (result) {
+                    /* console.log(result)*/
+                     if(result == null || result == undefined || result.list == null || result.list.length == 0){
+
+                         $("#rolePageBody1").hide();
+                         $("#rolePageBody2").show();
+                         $("tbody").empty();
+                         return false;
+                     }
+                     var str = "";
+                     var i = 1;
+                     $(result.list).each(function () {
+                         str += "<tr>" +
+                             "<td>" + i + "</td>" +
+                             "<td>" + this.house.address + "</td>" +
+                             "<td>" + this.state + "</td>" +
+                             "<td>" + this.datetime + "</td>" +
+                             "<td>";
+                         if (this.state == "已同意" || this.state == "已申请") {
+                             str += "<button class='btn btn-primary search_btn edit' type='button' onclick='close2("+this.id+",\""+this.state+"\",this)'>取消申请</button>" +
+                                 "</td>" +
+                                 "</tr>";
+                         } else if (this.state == "不同意") {
+                             str += "<button class='btn btn-primary search_btn' type='button' disabled>未同意</button>" +
+                                 "</td>" +
+                                 "</tr>";
+                         } else if (this.state == "已看房") {
+                             str += "<button class='btn btn-primary search_btn' type='button' disabled>已看房</button>" +
+                                 "</td>" +
+                                 "</tr>";
+                         } else if (this.state == "已取消") {
+                             str += "<button class='btn btn-primary search_btn' type='button' disabled>已取消</button>" +
+                                 "</td>" +
+                                 "</tr>";
+                         } else if (this.state == "已完成") {
+                             str += "<button class='btn btn-primary search_btn' type='button' disabled>已完成</button>" +
+                                 "</td>" +
+                                 "</tr>";
+                         }
+
+                         i++;
+                     })
+                     $("#rolePageBody1").show();
+                     $("#rolePageBody2").hide();
+                     $("tbody").empty().append(str);
+                 }
+
+             })
+         }
+
+        //获取地址栏参数,可以是中文参数
+        function getUrlParam(key) {
+            // 获取参数
+            var url = window.location.search;
+            //localhost:8080/doc?name=zhangsan&password=abc123
+            // 正则筛选地址栏
+            var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+            // 匹配目标参数
+            var result = url.substr(1).match(reg);
+            //返回参数值
+            return result ? decodeURIComponent(result[2]) : null;
+        }
+
+
+
+        /*取消申请*/
         function close2(id,state,obj) {
-            alert(state)
+           /* alert(state)*/
             var userId="${sessionScope.user.id}";
             if (!confirm("取消申请将会减少你的信用度，确定取消吗？")) {
                 return false;
@@ -169,17 +286,21 @@
                 </div>
             </div>
             <div id="select-div2">
-                <%--<input type="date"> 至 <input type="date">--%>
-                状态:<select name="state" id="address" class="required">
-                <option value="全部">--</option>
+                &nbsp; &nbsp; &nbsp; &nbsp;<select id="sel_year" class="required" name="year"></select>年
+                &nbsp; &nbsp; &nbsp; &nbsp; <select id="sel_month" class="required" name="month"></select>月
+                &nbsp; &nbsp; &nbsp; &nbsp; <select id="sel_day" class="required" name="day"></select>日
+                &nbsp; &nbsp; &nbsp; &nbsp;状态:<select name="state" id="address" class="required">
+                <option value="">--</option>
                 <option value="已申请">已申请</option>
                 <option value="已取消">已取消</option>
                 <option value="已同意">已同意</option>
+                <option value="已完成">已完成</option>
             </select>
 
+                </select>
+
                 <input id="Ktext" type="text" name="search" class="form-control" placeholder="请输入查询的内容">
-                <input type="submit" value="查询" class="btn btn-primary search_btn"
-                       style="position: absolute;top: -5px; right: 20px; width: 100px;">
+                <input type="button" value="查询" id="queryMyapplyfor" class="btn btn-primary search_btn" style="position: absolute;top: -5px; right: 20px; width: 100px;">
             </div>
             <%--<div class="line"></div>--%>
     </div>
@@ -201,31 +322,21 @@
         <tbody id="show_tbody">
 
         </tbody>
+
+        <tfoot align="center">
+
+        <tr>
+            <td colspan="6" align="center" id="rolePageBody1">
+                <div id="Pagination" class="pagination" style="margin: 0px auto"><!-- 这里显示分页 --></div>
+            </td>
+            <td id="rolePageBody2" colspan="6"  align="center">
+                <div style="margin: 0px auto">抱歉没有你查找的内容</div>
+            </td>
+        </tr>
+
+        </tfoot>
+
     </table>
 </div>
-
-
-<%--
-<script src="../../js/mejs.js"></script>
-<script src="../../js/jquery-1.9.1.min.js"></script>
-<script src="../../js/jquery.selectlist.js"></script>
---%>
-<script type="text/javascript" src="../../../js/birthday.js"></script>
-<script type="text/javascript">
- /*   $(function () {
-        $(".edit").click(function () {
-
-        })
-
-      /!*  $.ms_DatePicker({
-            YearSelector: ".sel_year",
-            MonthSelector: ".sel_month",
-            DaySelector: ".sel_day"
-        });
-        $.ms_DatePicker();*!/
-    })*/
-
-</script>
-
 </body>
 </html>

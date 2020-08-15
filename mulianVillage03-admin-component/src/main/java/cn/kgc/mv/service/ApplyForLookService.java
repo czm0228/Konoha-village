@@ -1,6 +1,7 @@
 package cn.kgc.mv.service;
 
 import cn.kgc.mv.entity.Apply;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface ApplyForLookService {
     Apply queryApply(Integer houseId, Integer userId);
 
     /*查询申请看房*/
-    List<Apply> queryMyApply(Integer userId);
+    PageInfo<Apply> queryMyApply(Integer userId, String year, String month, String day, String state,String search, Integer pageNum, Integer pageSize);
 
     /*取消申请*/
     boolean closeApply(Integer userId, Integer applyId, String state);

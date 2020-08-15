@@ -331,12 +331,11 @@
     <script type="text/javascript">
 
         $(function () {
-
             $.ajax({
                 url: "/queryHouseDetails",
                 data: {"houseId":${param.id}},
                 success: function (result) {
-                    /* console.log(result)*/
+                    /*console.log(result)*/
                     $("#houseImg").attr("src", result.img)
                     $("#houseImg").attr("alt", result.address)
                     $("#price").text(result.price)
@@ -367,37 +366,53 @@
 
             $("#btn1").click(function () {
                 var username = "${sessionScope.user.userName}";
-                var userId= "${sessionScope.user.id}";
+                var userId = "${sessionScope.user.id}";
+                var falg = false;
 
-                if (username != "" && username != null) {
-
-
-
+                    //查询用户信用度
                     $.ajax({
-                        url: "/queryApply",
-                        data: {"houseId":${param.id},"userId":userId},
+                        url: "/queryCreditLine",
+                        type: "post",
+                        async: false,
+                        data: {"userName": username},
                         success: function (result) {
-                            var houseId =${param.id};
-                            var userId ="${sessionScope.user.id}";
-                            if (houseId == result.houseId && userId == result.userId) {
-
-                                alert("你已申请看房！")
-
-                            } else {
-                                window.location.href = "/applyForLook?houseId=" +${param.id};
+                            if(result=="" || result==null){
+                                alert("您还没有登录，请登陆后再申请看房！！")
+                                falg = true;
+                            }else {
+                            if (result.creditLine < 50) {
+                                alert("对不起!,你的信用度不足")
+                                falg = true;
                             }
+                            }
+
                         }
                     })
 
-                } else {
-                    alert("您还没有登录，请登陆后再申请看房！！")
-                    return false;
-                }
+
+                    if (!falg) {
+                        $.ajax({
+                            url: "/queryApply",
+                            data: {"houseId":${param.id}, "userId": userId},
+                            success: function (result) {
+                                var houseId =${param.id};
+                                var userId = "${sessionScope.user.id}";
+                                if (houseId == result.houseId && userId == result.userId) {
+
+                                    alert("你已申请看房！")
+
+                                } else {
+                                    window.location.href = "/applyForLook?houseId=" +${param.id};
+                                }
+                            }
+                        })
+                    }
+
             })
 
 
             $("#btn2").click(function () {
-                history.go(-1);
+                window.history.go(-1);
             });
 
 

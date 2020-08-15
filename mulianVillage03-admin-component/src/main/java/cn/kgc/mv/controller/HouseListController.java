@@ -63,7 +63,7 @@ public class HouseListController {
                                      // pageNum默认值使用1
                                      @RequestParam(value="pageNum", defaultValue="1") Integer pageNum,
                                      // pageSize默认值使用5
-                                     @RequestParam(value="pageSize", defaultValue="5") Integer pageSize,
+                                     @RequestParam(value="pageSize", defaultValue="4") Integer pageSize,
                                      ModelMap modelMap){
      /* System.out.println(priceId+""+squareMeterId+""+metroId+""+areaId+""+search);*/
       // 调用Service方法获取PageInfo对象

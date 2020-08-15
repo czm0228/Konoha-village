@@ -23,4 +23,7 @@ public interface UserMapper {
 
     /*修改用户信用度*/
     Integer updateUsercreditLine(@Param("userId") Integer userId);
+
+    /*查询用户信用度*/
+    User queryCreditLine(@Param("username") String username);
 }
