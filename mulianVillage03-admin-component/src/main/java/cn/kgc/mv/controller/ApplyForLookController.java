@@ -28,6 +28,87 @@ public class ApplyForLookController {
     @Autowired
     UserService userService;
 
+
+    /*删除已看房*/
+    @RequestMapping(value = "/deletehaveToSee")
+    public boolean deletehaveToSee(@RequestParam("id") Integer id,@RequestParam("userId") Integer userId){
+
+        return applyForLookService.deletehaveToSee(id,userId);
+    }
+
+
+
+
+
+
+    /*查询已看房*/
+    @RequestMapping(value = "/queryhtoSee")
+    public PageInfo<Apply> queryhtoSee(
+            @RequestParam("userId") Integer userId,
+            @RequestParam("year") String year,
+            @RequestParam("month") String month,
+            @RequestParam("day") String day,
+            @RequestParam("state") String state,
+            @RequestParam("search") String search,
+            // pageNum默认值使用1
+            @RequestParam(value="pageNum", defaultValue="1") Integer pageNum,
+
+            // pageSize默认值使用5
+            @RequestParam(value="pageSize", defaultValue="6") Integer pageSize,
+
+            ModelMap modelMap
+
+    ){
+
+        // 调用Service方法获取PageInfo对象
+        PageInfo<Apply> pageInfo = applyForLookService.queryhtoSee(userId, year, month,day,state,search,pageNum,pageSize);
+
+       /* List<Apply> list = pageInfo.getList();
+        for (Apply apply : list) {
+            System.out.println(apply);
+        }*/
+        return pageInfo;
+    }
+
+
+
+    /*已看房(点击已看房)*/
+    @RequestMapping(value = "/toSeeHouse")
+    public boolean toSeeHouse(@RequestParam("id") Integer id,@RequestParam("userId") Integer userId){
+        return applyForLookService.toSeeHouse(id,userId);
+    }
+
+
+
+    /*待看房列表*/
+    @RequestMapping(value ="/queryToLookAt")
+    public PageInfo<Apply> queryToLookAt(
+                           @RequestParam("userId") Integer userId,
+                            @RequestParam("year") String year,
+                            @RequestParam("month") String month,
+                            @RequestParam("day") String day,
+                            @RequestParam("rentWay") String rentWay,
+                            @RequestParam("search") String search,
+                            // pageNum默认值使用1
+                            @RequestParam(value="pageNum", defaultValue="1") Integer pageNum,
+
+                            // pageSize默认值使用5
+                            @RequestParam(value="pageSize", defaultValue="6") Integer pageSize,
+
+                            ModelMap modelMap
+    ){
+        // 调用Service方法获取PageInfo对象
+        PageInfo<Apply> pageInfo = applyForLookService.queryToLookAt(userId, year, month,day,rentWay,search,pageNum,pageSize);
+
+       /* List<Apply> list = pageInfo.getList();
+        for (Apply apply : list) {
+            System.out.println(apply);
+        }*/
+        return pageInfo;
+    }
+
+
+
     /*添加申请看房*/
     @RequestMapping(value = "/saveApply")
     public boolean saveApply(Apply apply){

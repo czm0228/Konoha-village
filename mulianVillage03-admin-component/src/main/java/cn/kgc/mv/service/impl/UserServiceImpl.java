@@ -110,5 +110,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.queryCreditLine(username);
     }
 
+    @Override
+    public boolean addIntegral(Integer userId, int integral) {
+        return userMapper.addIntegral(userId,integral)==1;
+    }
+
 
 }

@@ -18,20 +18,6 @@
     <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../../js/bootbox.min.js"></script>
     <script src="../../../js/jquery-1.8.3.js"></script>
-
-
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="../../../js/bootstrap-3.3.7-dist/js/bootstrap.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
-
-
     <script type="text/javascript" src="../../../js/jquery.js"></script>
     <script type="text/javascript" src="../../../js/birthday.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagination.css">
@@ -73,7 +59,7 @@
             font-size: small;
             position: relative;
             right: 0px;
-            top: -40px;
+            top: -25px;
 
         }
 
@@ -87,17 +73,6 @@
             top: -20px;
             color: #BFBFBF;
             font-size: 15px;
-        }
-
-        #rolePageBody1{
-            position: fixed;
-            left: 480px;
-            bottom:0px;
-            border-bottom:0px hidden;
-        }
-        .quxiao{
-            position: relative;
-            left: -2px;
         }
     </style>
 
@@ -119,23 +94,23 @@
             var year=getUrlParam("year");
             var month=getUrlParam("month");
             var day=getUrlParam("day");
-            var state=getUrlParam("state");
+            var rentWay=getUrlParam("rentWay");
             var search=getUrlParam("search");
-            if(year == "" || year==null && month=="" || month==null && day=="" || day==null && state=="" || state==null&& search=="" || search==null){
+            if(year == "" || year==null && month=="" || month==null && day=="" || day==null && rentWay=="" || rentWay==null&& search=="" || search==null){
                 queryMyApply(0,0,0,"","");
             }
 
 
-           $("#queryMyapplyfor").click(function () {
-               var year=$("#sel_year").val();
-             var month=$("#sel_month").val();
-             var day=$("#sel_day").val();
-             var state=$("#address").val();
-               var search=$("#Ktext").val();
-             queryMyApply(year,month,day,state,search);
-               // 调用专门的函数初始化分页导航条
-               initPagination();
-           })
+            $("#queryMyapplyfor").click(function () {
+                var year=$("#sel_year").val();
+                var month=$("#sel_month").val();
+                var day=$("#sel_day").val();
+                var rentWay=$("#address").val();
+                var search=$("#Ktext").val();
+                queryMyApply(year,month,day,rentWay,search);
+                // 调用专门的函数初始化分页导航条
+                initPagination();
+            })
 
             // 调用专门的函数初始化分页导航条
             initPagination();
@@ -147,11 +122,11 @@
             var year=$("#sel_year").val();
             var month=$("#sel_month").val();
             var day=$("#sel_day").val();
-            var state=$("#address").val();
+            var rentWay=$("#address").val();
             var search=$("#Ktext").val();
             $.ajax({
-                url:"/queryMyApply",
-                data: {"userId":${sessionScope.user.id},"year":year,"month":month,"day":day,"state":state,"search":search},
+                url:"/queryToLookAt",
+                data: {"userId":${sessionScope.user.id},"year":year,"month":month,"day":day,"rentWay":rentWay,"search":search},
                 success:function (result) {
                     // 获取总记录数
                     var totalRecord = result.total;
@@ -187,9 +162,9 @@
             var year=$("#sel_year").val();
             var month=$("#sel_month").val();
             var day=$("#sel_day").val();
-            var state=$("#address").val();
+            var rentWay=$("#address").val();
             var search=$("#Ktext").val();
-            queryMyApply(year,month,day,state,search,pageNum);
+            queryMyApply(year,month,day,rentWay,search,pageNum);
 
             // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
             return false;
@@ -197,59 +172,69 @@
 
 
 
-         /*查询申请*/
-         function queryMyApply(year,month,day,state,search,pageNum) {
-             var i = 1;
-             $.ajax({
-                 url: "/queryMyApply",
-                 data: {"userId":${sessionScope.user.id},"year":year,"month":month,"day":day,"state":state,"search":search,"pageNum":pageNum},
-                 success: function (result) {
+        /*查询申请*/
+        function queryMyApply(year,month,day,rentWay,search,pageNum) {
+            var i = 1;
+            $.ajax({
+                url: "/queryToLookAt",
+                data: {"userId":${sessionScope.user.id},"year":year,"month":month,"day":day,"rentWay":rentWay,"search":search,"pageNum":pageNum},
+                success: function (result) {
                     /* console.log(result)*/
-                     if(result == null || result == undefined || result.list == null || result.list.length == 0){
+                    if(result == null || result == undefined || result.list == null || result.list.length == 0){
 
-                         $("#rolePageBody1").hide();
-                         $("#rolePageBody2").show();
-                         $("tbody").empty();
-                         return false;
-                     }
-                     var str = "";
+                        $("#rolePageBody1").hide();
+                        $("#rolePageBody2").show();
+                        $("tbody").empty();
+                        return false;
+                    }
+                    var str = "";
 
-                     $(result.list).each(function () {
-                         str += "<tr>" +
-                             "<td>" + i + "</td>" +
-                             "<td>" + this.house.address + "</td>" +
-                             "<td>" + this.state + "</td>" +
-                             "<td>" + this.datetime + "</td>" +
-                             "<td>";
-                         if (this.state == "已同意" || this.state == "已申请") {
-                             str += " &nbsp;<button class='btn btn-danger  quxiao ' type='button' onclick='close2("+this.id+",\""+this.state+"\",this)'>" +
-                                 "<span class='glyphicon glyphicon-remove-circle' style='font-size: 22px'></span></button>" +
-                                 "</td>" +
-                                 "</tr>";
-                         } else if (this.state == "不同意") {
-                             str += "<button class='btn btn-info' type='button' disabled>未同意</button>" +
-                                 "</td>" +
-                                 "</tr>";
-                         } else if (this.state == "已看房") {
-                             str += "<button class='btn btn-info' type='button' disabled>已看房</button>" +
-                                 "</td>" +
-                                 "</tr>";
-                         } else if (this.state == "已取消") {
-                             str += "<button class='btn btn-info ' type='button' disabled>" +
-                                 "<span class='glyphicon glyphicon-ban-circle' style='font-size: 22px'></span></button>" +
-                                 "</td>" +
-                                 "</tr>";
-                         }
+                    $(result.list).each(function () {
+                        str += "<tr>" +
+                            "<td>" + i + "</td>" +
+                            "<td>" + this.house.address + "</td>" +
+                            "<td>" + this.house.rentWay + "</td>" +
+                            "<td>" + this.datetime + "</td>" +
+                            "<td>"+
+                            "<button class='btn btn-primary search_btn edit' type='button' onclick='toSee("+this.id+",this)'>已看</button>" +
+                            "<button class='btn btn-primary search_btn edit' type='button' onclick='particulars("+this.houseId+")'>详情</button>" +
+                            "</td>" +
+                            "</tr>";
 
-                         i++;
-                     })
-                     $("#rolePageBody1").show();
-                     $("#rolePageBody2").hide();
-                     $("tbody").empty().append(str);
-                 }
+                        i++;
+                    })
+                    $("#rolePageBody1").show();
+                    $("#rolePageBody2").hide();
+                    $("tbody").empty().append(str);
+                }
 
-             })
-         }
+            })
+        }
+
+        /*已看单击事件*/
+        function toSee(id,obj) {
+            /*alert($(obj).parents("tbody").children().length==1)*/
+            var userId = "${sessionScope.user.id}";
+            if(confirm("确定已看房吗!")){
+                $.ajax({
+                    url:"/toSeeHouse",
+                    data:{"id":id,"userId":userId},
+                    success:function (result) {
+                        $(obj).parents("tr").remove();
+                    }
+                })
+                if($(obj).parents("tbody").children().length==1){
+                    /* alert("123")*/
+                    $("#rolePageBody1").hide();
+                    $("#rolePageBody2").show();
+                }
+            }
+        }
+
+        /*详情单击事件*/
+        function  particulars(houseId) {
+            window.location.href="/housingDetails?id="+houseId;
+        }
 
         //获取地址栏参数,可以是中文参数
         function getUrlParam(key) {
@@ -264,37 +249,10 @@
             return result ? decodeURIComponent(result[2]) : null;
         }
 
-
-
-        /*取消申请*/
-        function close2(id,state,obj) {
-           /* alert(state)*/
-            var userId="${sessionScope.user.id}";
-            if (!confirm("取消申请将会减少你的信用度，确定取消吗？")) {
-                return false;
-            }
-            $.ajax({
-                url:"/closeApply",
-                data:{"userId":userId,"applyId":id,"state":state},
-                success:function (result) {
-                    if(result){
-                        $(obj).text("已取消");
-                        $(obj).attr("disabled",true);
-                        $(obj).parents("tr").find("td:eq(2)").text("已取消");
-                    }else {
-                        alert("取消失败!")
-                    }
-                }
-
-            })
-        }
-
     </script>
 </head>
 <body>
-<%--<div class="result-title">
-    <h1>当前位置>房屋列表</h1>
-</div>--%>
+
 <div class="box">
     <div class="content">
         <form >
@@ -313,21 +271,16 @@
                 &nbsp; &nbsp; &nbsp; &nbsp;<select id="sel_year" class="required" name="year"></select>年
                 &nbsp; &nbsp; &nbsp; &nbsp; <select id="sel_month" class="required" name="month"></select>月
                 &nbsp; &nbsp; &nbsp; &nbsp; <select id="sel_day" class="required" name="day"></select>日
-                &nbsp; &nbsp; &nbsp; &nbsp;状态:<select name="state" id="address" class="required">
+                &nbsp; &nbsp; &nbsp; &nbsp;类型:<select name="state" id="address" class="required">
                 <option value="">--</option>
-                <option value="已申请">已申请</option>
-                <option value="已取消">已取消</option>
-                <option value="已同意">已同意</option>
+                <option value="合租">合租</option>
+                <option value="整租">整租</option>
             </select>
 
                 </select>
 
                 <input id="Ktext" type="text" name="search" class="form-control" placeholder="请输入查询的内容">
-
-
-                <button id="queryMyapplyfor"  type="button" class="btn btn-info"   style="position: absolute;top: -5px; right:20px; width: 100px;" style="position: absolute;top: -5px; right: 20px; width: 100px;">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询&nbsp; </button>
-
+                <input type="button" value="查询" id="queryMyapplyfor" class="btn btn-primary search_btn" style="position: absolute;top: -5px; right: 20px; width: 100px;">
             </div>
             <%--<div class="line"></div>--%>
     </div>
@@ -340,7 +293,7 @@
         <tr>
             <th>序列号</th>
             <th>房屋地址</th>
-            <th>状态</th>
+            <th>类型</th>
             <th>申请看房日期</th>
             <th>操作</th>
         </tr>

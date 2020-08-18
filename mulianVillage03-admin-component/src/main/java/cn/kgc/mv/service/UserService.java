@@ -28,4 +28,7 @@ public interface UserService {
 
     /*查询信用度*/
     User queryCreditLine(String username);
+
+    /*用户发表已看评论增加积分*/
+    boolean addIntegral(Integer userId, int i);
 }

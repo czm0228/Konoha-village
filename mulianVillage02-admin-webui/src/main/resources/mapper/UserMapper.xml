@@ -30,4 +30,8 @@
         SELECT id,username userName,password,phone_number phoneNumber,type,creditLine FROM user where
       username=#{username}
     </select>
+
+    <update id="addIntegral" parameterType="int">
+        UPDATE user SET integral=integral+#{integral} where id=#{userId}
+    </update>
 </mapper>
