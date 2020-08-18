@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kgc.mv.mapper.SalesmanMapper">
+
+    <!--查询年龄-->
+    <select id="getSalesmanAge" resultType="SalesmanAge">
+        SELECT * FROM salesman_age
+    </select>
+
+    <!--查询好评率-->
+    <select id="getSalesmanFavorable" resultType="SalesmanFavorable">
+        SELECT * FROM salesman_favorable
+    </select>
+
+    <!--查询业务员-->
+    <select id="querySalesman" resultType="Salesman" parameterType="Hashmap">
+        SELECT id,name,sex,age,img,performance,favorable FROM salesman
+
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="favorableId != null &amp;&amp; favorableId!=''">
+                <choose>
+                    <when test="favorableId==0">
+                        and age BETWEEN 0 AND 1000
+                    </when>
+                    <when test="favorableId==1">
+                        and favorable BETWEEN 0 AND 20
+                    </when>
+                    <when test="favorableId==2">
+                        and favorable BETWEEN 20 AND 40
+                    </when>
+                    <when test="favorableId==3">
+                        and favorable BETWEEN 40 AND 60
+                    </when>
+                    <when test="favorableId==4">
+                        and favorable BETWEEN 60 AND 80
+                    </when>
+                    <when test="favorableId==5">
+                        and favorable BETWEEN 80 AND 100
+                    </when>
+                    <when test="favorableId==6">
+                        and favorable BETWEEN 100 AND 1000
+                    </when>
+                </choose>
+            </if>
+            <if test="sex != null &amp;&amp; sex!='' &amp;&amp; sex != 2">
+                       AND sex=#{sex}
+            </if>
+            <if test="ageId != null &amp;&amp; ageId != ''">
+                <choose>
+                    <when test="ageId==0">
+                        and age BETWEEN 0 AND 100
+                    </when>
+                    <when test="ageId==1">
+                        and age BETWEEN 18 AND 28
+                    </when>
+                    <when test="ageId==2">
+                        and age BETWEEN 28 AND 38
+                    </when>
+                    <when test="ageId==3">
+                        and age BETWEEN 38 AND 48
+                    </when>
+                </choose>
+            </if>
+            <if test="search !=null &amp;&amp; search !=''">
+                and name LIKE #{search}
+            </if>
+        </trim>
+    </select>
+
+</mapper>

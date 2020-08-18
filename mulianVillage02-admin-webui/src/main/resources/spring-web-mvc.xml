@@ -48,6 +48,30 @@
             <mvc:exclude-mapping path="/register"/>
             <!--首页不拦截-->
             <mvc:exclude-mapping path="/frameHomePag"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/img/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/houseList"/>
+            <mvc:exclude-mapping path="/housingDetails"/>
+            <mvc:exclude-mapping path="/getHousePrice"/>
+            <mvc:exclude-mapping path="/getHouseSquareMeter"/>
+            <mvc:exclude-mapping path="/getArea"/>
+            <mvc:exclude-mapping path="/getHouseMetro"/>
+            <mvc:exclude-mapping path="/queryHouseList"/>
+            <mvc:exclude-mapping path="/register"/>
+            <mvc:exclude-mapping path="/getCode"/>
+            <mvc:exclude-mapping path="/success"/>
+            <mvc:exclude-mapping path="/saveUser"/>
+            <mvc:exclude-mapping path="/queryHouseDetails"/>
+            <mvc:exclude-mapping path="/queryCreditLine"/>
+            <mvc:exclude-mapping path="/moodsHouses"/>
+            <mvc:exclude-mapping path="/moodsHouse"/>
+            <mvc:exclude-mapping path="/popular"/>
+            <mvc:exclude-mapping path="/helpme"/>
+            <mvc:exclude-mapping path="/getFavorable"/>
+            <mvc:exclude-mapping path="/getAge"/>
+            <mvc:exclude-mapping path="/querySalesman"/>
+
 
 
             <!-- 配置拦截器类 -->

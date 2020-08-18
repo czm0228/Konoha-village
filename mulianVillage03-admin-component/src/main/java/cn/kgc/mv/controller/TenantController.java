@@ -39,4 +39,17 @@ public class TenantController {
     public String myApplyFor(){
        return "tenant/myApplyFor";
    }
+
+    /*人气房源*/
+    @RequestMapping(value = "/moodsHouses")
+    public String moodsHouse(){
+        return "tenant/popular";
+    }
+
+    /*帮你挑*/
+    @RequestMapping(value = "/helpme")
+    public String helpme(){
+        return "tenant/helpme";
+    }
+
 }

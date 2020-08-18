@@ -18,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 public class CrowdUtil {
 
     public static void main(String[] args) {
-        String str1="123";
+        String str1="111111";
         String s = CrowdUtil.md5(str1);
         System.out.println(s);
     }

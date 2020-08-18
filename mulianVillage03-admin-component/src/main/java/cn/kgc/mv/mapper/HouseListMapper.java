@@ -32,4 +32,11 @@ public interface HouseListMapper {
 
     /*查看房源详情*/
     public House queryHouseDetails(@Param("houseId") Integer houseId);
+
+    /*查询后台房源*/
+    public List<House> houtaiHouseList(Map<String, Object> map);
+
+    /*查询人气房源排行*/
+    public List<House> moodsHouse();
+
 }

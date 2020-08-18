@@ -29,4 +29,14 @@ public interface HouseListService {
 
     /*查看房源详情*/
     House queryHouseDetails(Integer houseId);
+
+    /*查询后台房源*/
+    /*List<House> queryHouseList(Integer priceId, Integer squareMeterId, Integer metroId, Integer areaId, String search);*/
+    public PageInfo<House> houtaiHouseList(Integer priceId, Integer squareMeterId, Integer metroId, Integer areaId, String search, Integer pageNum, Integer pageSize);
+
+    /*查询人气房源排行*/
+    public PageInfo<House> moodsHouse(Integer pageNum, Integer pageSize);
+
+
+
 }

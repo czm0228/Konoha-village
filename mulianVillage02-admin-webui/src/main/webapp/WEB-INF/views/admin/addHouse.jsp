@@ -23,9 +23,9 @@
             var price = $("#price1").val();
             /*var status = $("#status1").val();*/
             var squareMeter = $("#squareMeter1").val();
-            /*var metro = $("#metro1").val();
+            /*var metro = $("#metro1").val();*/
             var img = $("#img1").val();
-            var abstracts = $("#abstracts1").val();
+            /*var abstracts = $("#abstracts1").val();
             var thumbUpFor = $("#thumbUpFor1").val();
             var houseType = $("#houseType1").val();
             var hierarchy = $("#hierarchy1").val();*/

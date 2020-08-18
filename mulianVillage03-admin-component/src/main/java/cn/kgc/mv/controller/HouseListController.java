@@ -2,7 +2,6 @@ package cn.kgc.mv.controller;
 
 import cn.kgc.mv.constant.CrowdConstant;
 import cn.kgc.mv.entity.*;
-import cn.kgc.mv.service.ApplyForLookService;
 import cn.kgc.mv.service.HouseListService;
 
 import com.github.pagehelper.PageInfo;
@@ -11,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -80,4 +78,51 @@ public class HouseListController {
    public House queryHouseDetails(@RequestParam("houseId") Integer houseId){
       return houseListService.queryHouseDetails(houseId);
    }
+
+   /*查询后台房源*/
+   @RequestMapping(value = "/houtaiHouseList")
+   public PageInfo<House> houtaiHouseList(@RequestParam("priceId") Integer priceId,
+                                         @RequestParam("squareMeterId") Integer squareMeterId,
+                                         @RequestParam("metroId") Integer metroId,
+                                         @RequestParam("areaId") Integer areaId,
+                                         @RequestParam("search") String search,
+                                         // pageNum默认值使用1
+                                         @RequestParam(value="pageNum", defaultValue="1") Integer pageNum,
+                                         // pageSize默认值使用5
+                                         @RequestParam(value="pageSize", defaultValue="5") Integer pageSize,
+                                         ModelMap modelMap){
+     /* System.out.println(priceId+""+squareMeterId+""+metroId+""+areaId+""+search);*/
+      // 调用Service方法获取PageInfo对象
+      PageInfo<House> pageInfo = houseListService.houtaiHouseList(priceId,squareMeterId,metroId,areaId,search,pageNum,pageSize);
+
+      // 将PageInfo对象存入模型
+      modelMap.addAttribute(CrowdConstant.ATTR_NAME_PAGE_INFO, pageInfo);
+
+      return pageInfo;
+   }
+
+   /*查询人气房源*/
+   @ResponseBody
+   @RequestMapping(value = "/moodsHouse")
+   public PageInfo<House> moodsHouse(
+                                         // pageNum默认值使用1
+                                          @RequestParam(value="pageNum", defaultValue="1") Integer pageNum,
+                                          // pageSize默认值使用5
+                                          @RequestParam(value="pageSize", defaultValue="5") Integer pageSize,
+                                          ModelMap modelMap){
+
+      // 调用Service方法获取PageInfo对象
+      PageInfo<House> pageInfo = houseListService.moodsHouse(pageNum,pageSize);
+      System.out.println(pageInfo);
+
+      // 将PageInfo对象存入模型
+      modelMap.addAttribute(CrowdConstant.ATTR_NAME_PAGE_INFO, pageInfo);
+
+      return pageInfo;
+
+   }
+
+
+
+
 }

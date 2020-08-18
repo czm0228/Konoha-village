@@ -31,7 +31,7 @@
             <div class="login">
                 <img class="pic-header" src="../img/pic-header.png">
                 <div class="welcome">管理，您好 !</div>
-                <a class="exit" title="退出" href="login.jsp;">退出</a>
+                <a class="exit" title="退出" href="/login">退出</a>
                 <p class="last-login">上次登录时间 ：<span class="login-time">2015.02.04 08:20:12</span></p>
             </div>
             <a class="nav-notice-management nav" title="首页"  target="content"><img class="icon" src="../img/icon-infor.png">首页</a>

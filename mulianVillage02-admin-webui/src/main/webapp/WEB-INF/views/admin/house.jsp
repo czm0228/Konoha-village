@@ -19,8 +19,13 @@
     <script src="../../../js/jquery.min.js"></script>
     <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../../js/bootbox.min.js"></script>
+    <link rel="stylesheet" href="../../../css/pagination.css">
+    <script type="text/javascript" src="../../../js/jquery.pagination.js"></script>
     <script type="text/javascript">
         $(function () {
+
+
+
 
             /*查询价格*/
             $.ajax({
@@ -98,26 +103,127 @@
                 var metroId = $("#address").val();
                 var areaId = $("#region").val();
                 var search = $("#Ktext").val();
+                /* alert(priceId+" "+squareMeterId+" "+metroId+" "+areaId+" "+search)*/
                 queryHouseList(priceId, squareMeterId, metroId, areaId, search);
-
+                // 调用专门的函数初始化分页导航条
+                initPagination();
             })
+
+            // 调用专门的函数初始化分页导航条
+            initPagination();
         })
 
-        /*查询房源*/
-        function queryHouseList(priceId, squareMeterId, metroId, areaId, search) {
+
+
+        // 生成页码导航条的函数
+        function initPagination() {
+
+            var priceId = $("#price").val();
+            var squareMeterId = $("#area").val();
+            var metroId = $("#address").val();
+            var areaId = $("#region").val();
+            var search = $("#Ktext").val();
+
             $.ajax({
-                url: "/queryHouseList",
+                url:"/houtaiHouseList",
+                data:{
+                    "priceId": priceId,
+                    "squareMeterId": squareMeterId,
+                    "metroId": metroId,
+                    "areaId": areaId,
+                    "search": search,
+                },
+                success:function (result) {
+                    // 获取总记录数
+                    var totalRecord = result.total;
+
+                    // 声明一个JSON对象存储Pagination要设置的属性
+                    var properties = {
+                        num_edge_entries: 3,								// 边缘页数
+                        num_display_entries: 5,								// 主体页数
+                        callback: pageSelectCallback,						// 指定用户点击“翻页”的按钮时跳转页面的回调函数
+                        items_per_page: result.pageSize,	// 每页要显示的数据的数量
+                        current_page: result.pageNum - 1,	// Pagination内部使用pageIndex来管理页码，pageIndex从0开始，pageNum从1开始，所以要减一
+                        prev_text: "上一页",									// 上一页按钮上显示的文本
+                        next_text: "下一页"									// 下一页按钮上显示的文本
+                    };
+
+                    // 生成页码导航条
+                    $("#Pagination").pagination(totalRecord, properties);
+                }
+
+            })
+
+        }
+
+        // 回调函数的含义：声明出来以后不是自己调用，而是交给系统或框架调用
+        // 用户点击“上一页、下一页、1、2、3……”这样的页码时调用这个函数实现页面跳转
+        // pageIndex是Pagination传给我们的那个“从0开始”的页码
+        function pageSelectCallback(pageIndex, jQuery) {
+
+            // 根据pageIndex计算得到pageNum
+            var pageNum = pageIndex + 1;
+
+            // 跳转页面
+            //调用queryHouseList()；
+            var priceId = $("#price").val();
+            var squareMeterId = $("#area").val();
+            var metroId = $("#address").val();
+            var areaId = $("#region").val();
+            var search = $("#Ktext").val();
+            /* alert(priceId+" "+squareMeterId+" "+metroId+" "+areaId+" "+search)*/
+            queryHouseList(priceId, squareMeterId, metroId, areaId, search,pageNum);
+
+            // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
+            return false;
+        }
+
+
+        function getHouseById(houseId) {
+
+            window.location.href="/updaHouse?houseId="+houseId;
+
+        }
+
+        function delHouse(id,obj) {
+
+            if (confirm("你确定要删除此房源吗?")) {
+                $.ajax({
+                    url: "/delHouse",
+                    data: {"id": id},
+                    type: "post",
+                    success: function (result) {
+                        /*alert("1235346")*/
+                        /* console.log(result)*/
+                        if (result) {
+                            alert("删除成功")
+                            $(obj).parents("tr").remove();
+                        } else {
+                            alert("删除失败")
+                        }
+                    }
+                })
+            }
+        }
+
+
+        /*查询房源*/
+        function queryHouseList(priceId, squareMeterId, metroId, areaId, search,pageNum) {
+            $.ajax({
+                url: "/houtaiHouseList",
                 data: {
                     "priceId": priceId,
                     "squareMeterId": squareMeterId,
                     "metroId": metroId,
                     "areaId": areaId,
-                    "search": search
+                    "search": search,
+                    "pageNum":pageNum
                 },
                 success: function (result) {
-                    console.log(result)
+                    /*console.log(result)*/
+
                     var str = "";
-                    $(result).each(function () {
+                    $(result.list).each(function () {
                         str += "<tr>" +
                             "<td>" + this.id + "</td>" +
                             "<td><img src='" + this.img + "' id='img-span'></td>" +
@@ -125,7 +231,7 @@
                             "<td>" + this.squareMeter + "m²</td>" +
                             "<td>" + this.status + "</td>" +
                             "<td>" +
-                            " <button class='btn btn-primary search_btn' type='button'>查看</button>" +
+                            "<button class='btn btn-primary search_btn' type='button' onclick='queryHouse("+this.id+")'>查看</button>" +
                             "</td>" +
                             "<td>" +
                             " <button class='btn btn-primary search_btn' type='button' id='updataBtn' onclick='getHouseById("+this.id+")''>修改</button>" +
@@ -139,34 +245,15 @@
                 }
             })
         }
-        
-        function getHouseById(houseId) {
 
-            window.location.href="/updaHouse?houseId="+houseId;
-
+        /*查看房源信息*/
+        function  queryHouse(id) {
+            /* var userId="";*/<%--${sessionScope.user.id}--%>
+            /*alert(id+" "+userId);*/
+            window.location.href="/housingDetails?id="+id;
         }
 
-        function delHouse(id,obj) {
 
-            if (confirm("你确定要删除此房源吗?")){
-                $.ajax({
-                    url:"/delHouse",
-                    data:{"id":id},
-                    type:"post",
-                    success:function (result) {
-                        /*alert("1235346")*/
-                       /* console.log(result)*/
-                        if (result){
-                            alert("删除成功")
-                            $(obj).parents("tr").remove();
-                        }else {
-                            alert("删除失败")
-                        }
-                    }
-                })
-            }
-
-        }
 
 
         //获取地址栏参数,可以是中文参数
@@ -257,7 +344,6 @@
                 <div class="person_search">
                     <div class="search_input">
                         <div class="input-group mb-3">
-
                         </div>
                     </div>
                 </div>
@@ -272,14 +358,14 @@
                 &nbsp; &nbsp; &nbsp; &nbsp; 地区:<select name="region" id="region" class="required">
             </select>
                 <input id="Ktext" type="text" name="search" class="form-control" placeholder="请输入查询的内容">
-
                 <input type="button" value="查询" id="queryHouse" class="btn btn-primary search_btn"
-                       style="position: absolute;top: -5px; right: 130px; width: 100px;">
-
-                <input type="button" value="增加房源" id="addBtn" onclick="window.location.href='addHouse'" class="btn btn-primary search_btn"
                        style="position: absolute;top: -5px; right: 20px; width: 100px;">
+
             </div>
+
         </form>
+        <input type="button" value="增加房源" id="addBtn" onclick="window.location.href='addHouse'" class="btn btn-primary search_btn"
+               style="position: absolute;top: -5px; right: 20px; width: 100px;">
     </div>
 
     <!--添加按钮及bootstrap的模态框-->
@@ -293,12 +379,20 @@
             <th>价格</th>
             <th>面积</th>
             <th>状态</th>
-            <th colspan="3">操作</th>
+            <th>操作</th>
         </tr>
         </thead>
 
         <tbody id="show_tbody">
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6" align="center">
+                <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
+            </td>
+        </tr>
+
+        </tfoot>
     </table>
 
 </div>
