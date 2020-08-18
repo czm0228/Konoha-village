@@ -40,6 +40,24 @@ public class TenantController {
        return "tenant/myApplyFor";
    }
 
+   /*待看列表*/
+   @RequestMapping(value = "/forTheLease")
+    public String forTheLease(){
+       return "tenant/forTheLease";
+   }
+
+    /*已看房列表*/
+   @RequestMapping(value = "/haveToSee")
+   public  String haveToSee(){
+       return "tenant/haveToSee";
+   }
+
+   /*已看房时评论*/
+   @RequestMapping(value = "/comment")
+    public String comment(){
+       return "tenant/comment";
+   }
+
     /*人气房源*/
     @RequestMapping(value = "/moodsHouses")
     public String moodsHouse(){

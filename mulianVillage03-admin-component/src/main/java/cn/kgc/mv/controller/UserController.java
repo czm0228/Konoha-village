@@ -3,6 +3,7 @@ package cn.kgc.mv.controller;
 import cn.kgc.mv.entity.User;
 import cn.kgc.mv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,15 @@ public class UserController {
     @Autowired
     UserService userService;
 
+  /*查询用户信用度*/
+  @ResponseBody
+  @RequestMapping(value = "/queryCreditLine")
+  public User queryCreditLine(@RequestParam("userName") String userName){
+      return userService.queryCreditLine(userName);
+  }
+
+
+
 
     /*退出登录*/
     @RequestMapping(value = "/exitToLogin")
@@ -28,6 +38,16 @@ public class UserController {
         return "redirect:/login";
     }
 
+
+
+   /* *//*登录*//*
+    @RequestMapping(value = "/queryLogin")
+    public String queryLogin(User user){
+        UserDetails userDetails = userService.loadUserByUsername(user.getUserName());
+        System.out.println(userDetails);
+        return "redirect:/frameTenant";
+    }
+*/
 
 
     /*查询用户*/
@@ -43,8 +63,6 @@ public class UserController {
       }else {
           return "redirect:/houtai";
       }
-
-
     }
 
 
@@ -63,7 +81,7 @@ public class UserController {
             if (phone == "" || phone == null) {
                 return "您还获取验证码！";
             } else if (!phone.equals(user.getPhoneNumber())) {//提交的手机号码是否和接收验证码的手机号码一致！
-                return "提交的手机号码与接收验证码的手机号码一致!";
+                return "提交的手机号码与接收验证码的手机号码不一致!";
             } else if (!code.equals(code1)) {//判断验证码是否一致
                 return "验证码不正确!";
             } else {

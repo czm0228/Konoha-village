@@ -2,7 +2,10 @@ package cn.kgc.mv.service;
 
 
 
-import cn.kgc.mv.entity.User; /**
+import cn.kgc.mv.entity.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+/**
  * @Author: czm
  * @Date: 2020/8/8 11:29
  */
@@ -22,4 +25,10 @@ public interface UserService {
 
     /*修改用户信用度*/
     boolean updateUsercreditLine(Integer userId);
+
+    /*查询信用度*/
+    User queryCreditLine(String username);
+
+    /*用户发表已看评论增加积分*/
+    boolean addIntegral(Integer userId, int i);
 }

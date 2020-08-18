@@ -8,6 +8,7 @@ public class User {
     private String phoneNumber;  //电话号码
     private int type;    //用户类型（0租客  1房东）
     private int creditLine;//信用度
+    private int integral;//积分
 
 
     @Override
@@ -19,7 +20,16 @@ public class User {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", type=" + type +
                 ", creditLine=" + creditLine +
+                ", integral=" + integral +
                 '}';
+    }
+
+    public int getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(int integral) {
+        this.integral = integral;
     }
 
     public Integer getId() {

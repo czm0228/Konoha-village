@@ -25,4 +25,13 @@
     <update id="updateUsercreditLine" parameterType="int">
         UPDATE user set creditLine=creditLine-10 WHERE id=#{userId}
     </update>
+
+    <select id="queryCreditLine" parameterType="String" resultType="User">
+        SELECT id,username userName,password,phone_number phoneNumber,type,creditLine FROM user where
+      username=#{username}
+    </select>
+
+    <update id="addIntegral" parameterType="int">
+        UPDATE user SET integral=integral+#{integral} where id=#{userId}
+    </update>
 </mapper>

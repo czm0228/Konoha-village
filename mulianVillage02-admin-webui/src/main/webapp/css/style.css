@@ -249,11 +249,6 @@ a:hover{}
 	color: #479eff;
 }
 
-.edit{
-	margin-right:10px;
-	color: #479eff;
-}
-
 .save_none{
 	display:none;
 	color: #479eff;
@@ -438,8 +433,10 @@ a:hover{}
     line-height: 35px;
 }
 .bootbox{background: rgba(0,0,0,0.5);}
-#Ktext{color: #3ea2ee !important;}
+
+
+
 #img-span {
-	max-height: 20%;
+	max-height: 18%;
 	max-width: 20%;
 }

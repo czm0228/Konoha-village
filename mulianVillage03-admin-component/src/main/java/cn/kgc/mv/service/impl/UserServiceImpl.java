@@ -1,21 +1,29 @@
 package cn.kgc.mv.service.impl;
 
 import cn.kgc.mv.constant.CrowdConstant;
+
+
 import cn.kgc.mv.entity.User;
 import cn.kgc.mv.exception.LoginFailedException;
 import cn.kgc.mv.mapper.UserMapper;
 import cn.kgc.mv.service.UserService;
 import cn.kgc.mv.util.CrowdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * @Author: czm
  * @Date: 2020/8/8 11:29
  */
-@Service
+@Service(value = "userService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -33,7 +41,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer saveUser(User user) {
+
+        String password = CrowdUtil.md5(user.getPassword());
+        user.setPassword(password);
         return userMapper.saveUser(user);
+
     }
 
     @Override
@@ -92,4 +104,16 @@ public class UserServiceImpl implements UserService {
     public boolean updateUsercreditLine(Integer userId) {
         return userMapper.updateUsercreditLine(userId)==1;
     }
+
+    @Override
+    public User queryCreditLine(String username) {
+        return userMapper.queryCreditLine(username);
+    }
+
+    @Override
+    public boolean addIntegral(Integer userId, int integral) {
+        return userMapper.addIntegral(userId,integral)==1;
+    }
+
+
 }

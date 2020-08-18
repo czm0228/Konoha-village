@@ -20,8 +20,8 @@
 
     .zc {
         position: absolute;
-        left: 760px;
-        bottom: 400px;
+        left: 850px;
+        bottom: 500px;
         text-align: center;
         line-height: 15px;
         border-radius: 15px;
@@ -34,8 +34,8 @@
 
     .tiao {
         position: absolute;
-        left: 760px;
-        bottom: 320px;
+        left: 850px;
+        bottom: 420px;
         text-align: center;
         border-radius: 15px;
         border: 2px solid #00bfff;
@@ -56,15 +56,17 @@
         padding: 8px 12px;
         text-decoration: none;
         position: absolute;
-        left: 815px;
-        bottom: 260px;
+        left: 910px;
+        bottom: 350px;
     }
     .button:hover{
         color: #209CFF;
     }
+
 </style>
 
 <body>
+
 <div class="zc"><h1>注册成功!</h1></div>
 <br/>
 <div class="tiao">
@@ -73,24 +75,25 @@
 </div>
 
 <a href="/login"  class="button">点击立即登录</a>
+
 </body>
 </html>
 
 <script type="text/javascript">
 
-    window.onload = function () {
-        setTimeout(changeTime, 1000);
-    }
-    function changeTime() {
-        var time = document.getElementById("time").innerHTML;
-        time = parseInt(time);
-        time--;
-        if (time <= 0) {
-            var url = "/login";
-            window.location = url;
-        } else {
-            document.getElementById("time").innerHTML= time;
-            setTimeout(changeTime, 1000);
-        }
-    }
+    /* window.onload = function () {
+         setTimeout(changeTime, 1000);
+     }
+     function changeTime() {
+         var time = document.getElementById("time").innerHTML;
+         time = parseInt(time);
+         time--;
+         if (time <= 0) {
+             var url = "/login";
+             window.location = url;
+         } else {
+             document.getElementById("time").innerHTML= time;
+             setTimeout(changeTime, 1000);
+         }
+     }*/
 </script>

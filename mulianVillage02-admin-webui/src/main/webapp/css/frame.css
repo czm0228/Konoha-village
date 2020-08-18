@@ -23,7 +23,7 @@
 /***** 头部样式 *****/
 .header{
     padding-left: 70px;
-    height: 80px;
+    height: 100px;
     background: rgba(0,0,0,.1);
     font-size: 20px;
     line-height: 80px;
@@ -31,18 +31,23 @@
     min-width: 1353px;
 }
 #spanTitle{
-	position: absolute;
-	left: 200px;
+    position: absolute;
+    top: 10px;
+    left: 890px;
+    font-size: 50px;
+    color: #000000;
+    font-family:STXingkai;
+
 }
 #logo{
-	 margin: 0;
+    margin: 0;
     padding: 0;
-    min-width:150px;
-    max-width:150px; 
+    width:290px;
+    height: 90px;
     position: absolute;
     top: 10px;
     left: 30px;
-  
+
 }
 /***** 主体内容样式 *****/
 .main{
@@ -184,7 +189,3 @@
     text-align: center;
     color: #fff;
 }
-
-
-
-   

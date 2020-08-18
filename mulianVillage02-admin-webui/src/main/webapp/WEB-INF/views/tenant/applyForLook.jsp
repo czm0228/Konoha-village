@@ -12,13 +12,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../../../css/style.css">
-
-    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
-    <%--<link rel="stylesheet" type="text/css" href="../../css/jquery.selectlist.css">--%>
+    <script type="text/javascript" src="../../../js/jquery-1.9.1.min.js"></script>
     <script src="../../../js/jquery.min.js"></script>
-    <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../../js/bootbox.min.js"></script>
-    <script type="text/javascript" src="../../../js/jquery-1.8.3.js"></script>
+
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../../../js/bootstrap-3.3.7-dist/js/bootstrap.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
 
 
     <style type="text/css">
@@ -41,116 +48,34 @@
         }
 
         /* 这开始*/
-        ---
+
         input[type="reset"], input[type="submit"] {
             margin: 10px 30px;
-            background-color: darkorange;
-            color: white;
-            padding: 5px;
-            height: 45px;
-            width: 80px;
-            border: 0;
             position: absolute;
             right: 540px;
         }
 
-        input[type="reset"], input[type="submit"]:hover {
-            cursor: pointer;
-            border-color: royalblue;
-        }
 
-        input[type="reset"], input[type="button"] {
-            margin: 10px 30px;
-            background-color: darkorange;
-            color: white;
-            padding: 5px;
-            height: 45px;
-            width: 80px;
-            border: 0;
-            position: absolute;
-            right: 430px;
-        }
-
-        input[type="reset"], input[type="button"]:hover {
-            cursor: pointer;
-            border-color: royalblue;
-        }
-
-        .mytxt {
-            color: #333;
-            line-height: normal;
-            font-family: "Microsoft YaHei", Tahoma, Verdana, SimSun;
-            font-style: normal;
-            font-variant: normal;
-            font-size-adjust: none;
-            font-stretch: normal;
-            font-weight: normal;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            padding-top: 4px;
-            padding-right: 4px;
-            padding-bottom: 4px;
-            padding-left: 4px;
-            font-size: 15px;
-            outline-width: medium;
-            outline-style: none;
-            outline-color: invert;
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
-            text-shadow: 0px 1px 2px #fff;
-            background-attachment: scroll;
-            background-repeat: repeat-x;
-            background-position-x: left;
-            background-position-y: top;
-            background-size: auto;
-            background-origin: padding-box;
-            background-clip: border-box;
-            background-color: rgb(255, 255, 255);
-            margin-right: 8px;
-            border-top-color: #ccc;
-            border-right-color: #ccc;
-            border-bottom-color: #ccc;
-            border-left-color: #ccc;
-            border-top-width: 1px;
-            border-right-width: 1px;
-            border-bottom-width: 1px;
-            border-left-width: 1px;
-            border-top-style: solid;
-            border-right-style: solid;
-            border-bottom-style: solid;
-            border-left-style: solid;
-        }
-
-        .mytxt:focus {
-            border: 1px solid red;
-            -webkit-box-shadow: 0px 0px 6px red;
-            -moz-box-shadow: 0px 0px 5px red;
-            box-shadow: 0px 0px 5px red;
-
-        }
-
-        .mytxt {
-            border-color: black;
-            border-width: 1px;
-        }
 
         .w {
             position: absolute;
             right: 630px;
         }
 
-        .mytxt {
+        .mytxt{
             position: absolute;
-
+            right: 454px;
+        }
+        .s {
+            position: absolute;
+            top: 225px;
             right: 450px;
         }
 
-        .s {
+        .t{
             position: absolute;
-            right: 480px;
+            right: 580px;
+            top: 225px;
         }
 
         #enterPassword {
@@ -159,13 +84,30 @@
 
             right: 454px;
         }
+        .user{
+            background-image: url(../../../img/user.png);/*设置小图标*/
+
+            background-size: 20px 20px;/*小图标的大小*/
+
+            background-position: 135px 4px;/*小图标在input的位置*/
+
+            background-repeat: no-repeat;/*背景小图标不重复*/
+
+            padding: 20px 8px 8px 40px;/*设置input内边距*/
+        }
+        .shouji{
+            background-image: url(../../../img/shouji.png);/*设置小图标*/
+
+            background-size: 20px 20px;/*小图标的大小*/
+
+            background-position: 135px 4px;/*小图标在input的位置*/
+
+            background-repeat: no-repeat;/*背景小图标不重复*/
+
+            padding: 20px 8px 8px 40px;/*设置input内边距*/
+        }
 
         /* 这结束*/
-        #submit{
-            position: absolute;
-            top: 222px;
-            left: 417px;
-         }
 
     </style>
 
@@ -253,23 +195,31 @@
         <!--表格列表-->
 
         <form>
-            <p class="w">姓名:</p> <input class="mytxt" type="text" name="userName" id="oldPassword" style="width: 170px"
-                                        > <br/><br/>
-            <p class="w">手机号码:</p> <input class="mytxt" type="text" name="phone" id="newPassword" style="width: 170px"
-                                          ><br/><br/>
-            <p class="w" id="i">申请日期:</p> <input class="mytxt" type="date" name="date" id="enterPassword">
+            <p class="w">姓名:</p>
+            <input class="mytxt  form-control  user " type="text"  name="userName" id="oldPassword" style="width: 170px"> <br/><br/>
+            <p class="w">手机号码:</p> <input class="mytxt  form-control  shouji" type="text" name="phone" id="newPassword" style="width: 170px"><br/><br/>
+            <p class="w" id="i">申请日期:</p><input class="mytxt form-control  date" type="date" name="date" id="enterPassword"  style="width: 170px" >
             <br/><br/>
             <%--<input type="hidden" name="houseId" value="${requestScope.houseId}">
             <input type="hidden" name="userId" value="${sessionScope.user.id}">--%>
-            <input class="s" type="button" value="提交" id="submit">
-            <input class="s" type="button" value="返回" id="return">
+
+            <button   type="button"  class="btn btn-info  s" style="height: 35px " style="width: 130px" id="submit">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 提交</button>
+
+
+            <button   type="button" class=" btn btn-info   t" style="height: 35px" style="width: 130px" id="return">
+                <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回</button>
+
+
         </form>
 
     </div>
 
-
 </div>
+
+
 </body>
+
 <%--<script type="text/javascript">
     $(function () {
         alert("123456")

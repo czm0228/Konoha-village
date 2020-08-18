@@ -23,4 +23,10 @@ public interface UserMapper {
 
     /*修改用户信用度*/
     Integer updateUsercreditLine(@Param("userId") Integer userId);
+
+    /*查询用户信用度*/
+    User queryCreditLine(@Param("username") String username);
+
+    /*已看房评论 增加积分*/
+    Integer addIntegral(@Param("userId") Integer userId,@Param("integral") int integral);
 }

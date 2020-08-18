@@ -12,20 +12,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
 
-    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../../../js/bootstrap-3.3.7-dist/js/bootstrap.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <%--<link rel="stylesheet" type="text/css" href="../../css/jquery.selectlist.css">--%>
-    <script src="../../../js/jquery.min.js"></script>
-    <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../../js/bootbox.min.js"></script>
-    <link rel="stylesheet" href="../../../css/pagination.css">
-    <script type="text/javascript" src="../../../js/jquery.pagination.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="${pageContext.request.contextPath}/js/bootbox.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagination.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.pagination.js"></script>
     <script type="text/javascript">
         $(function () {
-
-
-
 
             /*查询价格*/
             $.ajax({
@@ -90,9 +98,8 @@
             var metroId = getUrlParam("metroId");
             var areaId = getUrlParam("areaId");
             var search = getUrlParam("search");
-
             if (priceId == null || priceId == "" && squareMeterId == null || squareMeterId == "" &&
-                metroId == null || metroId == "" && areaId == null || areaId == "" && search == null || search) {
+                metroId == null || metroId == "" && areaId == null || areaId == "" && search == null || search=="") {
                 queryHouseList(priceId, squareMeterId, metroId, areaId, search);
             }
 
@@ -173,7 +180,6 @@
             var search = $("#Ktext").val();
             /* alert(priceId+" "+squareMeterId+" "+metroId+" "+areaId+" "+search)*/
             queryHouseList(priceId, squareMeterId, metroId, areaId, search,pageNum);
-
             // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
             return false;
         }
@@ -197,20 +203,37 @@
                 success: function (result) {
                     /*console.log(result)*/
 
-                    var str = "";
-                    $(result.list).each(function () {
-                        str += "<tr>" +
-                            "<td>" + this.id + "</td>" +
-                            "<td><img src='" + this.img + "' id='img-span'></td>" +
-                            "<td>" + this.price + "元</td>" +
-                            "<td>" + this.squareMeter + "m²</td>" +
-                            "<td>" + this.status + "</td>" +
-                            "<td>" +
-                            "<button class='btn btn-primary search_btn' type='button' onclick='queryHouse("+this.id+")'>查看</button>" +
-                            "</td>" +
-                            "</tr>"
-                    })
-                    $("tbody").empty().append(str);
+//                       if(result == null || result == undefined || result.list == null || result.list.length == 0){
+//                           $("tbody").empty();
+//                           $("#rolePageBody").empty().append("<td colspan='4' align='center'>抱歉！没有查询到您搜索的数据！</td>");
+//                           return false;
+//                       }
+
+                    if(result == null || result == undefined || result.list == null || result.list.length == 0){
+
+                        $("#rolePageBody1").hide();
+                        $("#rolePageBody2").show();
+                        $("tbody").empty();
+                        return false;
+                    }
+                        var str = "";
+                        $(result.list).each(function () {
+                            str += "<tr>" +
+                                "<td style='overflow:hidden'>" + this.id + "</td>" +
+                                "<td style='max-width:400px'><img src='" + this.img + "' id='img-span'></td>" +
+                                "<td>" + this.price + "元</td>" +
+                                "<td>" + this.squareMeter + "m²</td>" +
+                                "<td>" + this.status + "</td>" +
+                                "<td>" +
+                                "<button class='btn btn-info  cha'  type='button' style='font-size: 14px' onclick='queryHouse("+this.id+")'>查看</button>" +
+                                "</td>" +
+                                "</tr>"
+                        })
+                        $("#rolePageBody1").show();
+                        $("#rolePageBody2").hide();
+                        $("tbody").empty().append(str);
+
+
                 }
             })
         }
@@ -240,6 +263,12 @@
     </script>
 
     <style type="text/css">
+
+        .cha{
+            height: 33px;
+            width: 68px;
+
+        }
         #show_tbody td {
             font-size: 15px;
             vertical-align: middle
@@ -276,7 +305,7 @@
             font-size: small;
             position: relative;
             right: 0px;
-            top: -25px;
+            top: -40px;
 
         }
 
@@ -290,6 +319,22 @@
             top: -20px;
             color: #BFBFBF;
             font-size: 15px;
+        }
+
+        #rolePageBody1{
+            position: fixed;
+            left: 480px;
+            bottom:0px;
+            border-bottom:0px hidden;
+        }
+
+        #ktext{
+            position: relative;
+            top:-32px;
+        }
+        #queryHouse{
+            position: relative;
+            bottom: 1px;
         }
 
         /*====================================*/
@@ -325,9 +370,10 @@
             </select>
                 &nbsp; &nbsp; &nbsp; &nbsp; 地区:<select name="region" id="region" class="required">
             </select>
-                <input id="Ktext" type="text" name="search" class="form-control" placeholder="请输入查询的内容">
-                <input type="button" value="查询" id="queryHouse" class="btn btn-primary search_btn"
-                       style="position: absolute;top: -5px; right: 20px; width: 100px;">
+                <input id="Ktext" type="text" name="search" class="form-control" placeholder="请输入查询的内容" style="height:31px ">
+
+               <button id="queryHouse"  type="button" class="btn btn-info"   style=" font-size: 14px; position: absolute;top: -5px; right:20px; width: 100px; height: 33px ">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询 &nbsp;</button>
             </div>
         </form>
     </div>
@@ -338,26 +384,31 @@
     <table id="tb" class="table">
         <thead>
         <tr>
-            <th>序列号</th>
+            <th>序号</th>
             <th>图片</th>
             <th>价格</th>
             <th>面积</th>
             <th>状态</th>
-            <th>操作</th>
+            <th colspan="2">操作</th>
         </tr>
         </thead>
 
         <tbody id="show_tbody">
         </tbody>
-        <tfoot>
+        <tfoot align="center">
+
         <tr>
-            <td colspan="6" align="center">
-                <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
+            <td colspan="6" align="center" id="rolePageBody1">
+                <div id="Pagination" class="pagination" style="margin: 0px auto"><!-- 这里显示分页 --></div>
+            </td>
+            <td id="rolePageBody2" colspan="6"  align="center">
+                <div style="margin: 0px auto">抱歉没有你查找的内容</div>
             </td>
         </tr>
 
         </tfoot>
     </table>
+
 
 </div>
 

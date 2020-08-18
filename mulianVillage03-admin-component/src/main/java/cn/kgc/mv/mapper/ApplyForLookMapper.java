@@ -18,11 +18,23 @@ public interface ApplyForLookMapper {
     Integer saveApply(Apply apply);
 
     /*查看是否申请过此房*/
-    Apply queryApply(@Param("houseId") Integer houseId, @Param("userId") Integer userId);
+    Apply queryApply(Map<String,Object> map);
 
     /*查询申请看房*/
-    List<Apply> queryMyApply(@Param("userId") Integer userId);
+    List<Apply> queryMyApply(Map<String,Object> map);
 
     /*取消申请*/
     Integer updateApply(Map<String, Object> map);
+
+    /*待看列表  状态为已同意才可以待看*/
+    List<Apply> queryToLookAt(Map<String,Object> map);
+
+    /*点击已看房*/
+    Integer toSeeHouse(Apply apply);
+
+    /*查询已看房*/
+    List<Apply> queryhtoSee(Map<String, Object> map);
+
+    /*删除已看房*/
+    Integer deletehaveToSee(Map<String, Object> map);
 }
