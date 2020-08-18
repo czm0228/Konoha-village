@@ -58,12 +58,11 @@ public class UserController {
       if(users!=null){
           session.setAttribute("user",users);
       }
-
-        if(users.getType()==0){
-            return "redirect:/frameTenant";
-        }else {
-            return "redirect:/houtai";
-        }
+      if(users.getType()==0){
+          return "redirect:/frameTenant";
+      }else {
+          return "redirect:/houtai";
+      }
     }
 
 

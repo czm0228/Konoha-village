@@ -36,9 +36,9 @@
 
             <a class="nav-information-submit nav" title="房源信息" href="/houseList" target="content"><img class="icon" src="../../img/icon-infor.png">房源信息<img class="nav-down" src="../../img/nav-down.png"></a>
 
-            <a class="nav-information-submit nav" title="人气好房" href="/PopularServlet" target="content"><img class="icon" src="../../img/icon-statistical.png">人气好房<img class="nav-down" src="../../img/nav-down.png"></a>
+            <a class="nav-information-submit nav" title="人气好房" href="/moodsHouses" target="content"><img class="icon" src="../../img/icon-statistical.png">人气好房<img class="nav-down" src="../../img/nav-down.png"></a>
 
-            <a class="nav-statistical-reports nav" title="帮你挑" href="/HelpMe" target="content"><img class="icon" src="../../img/icon-statistical.png">帮你挑<img class="nav-down" src="../../img/nav-down.png"></a>
+            <a class="nav-statistical-reports nav" title="帮你挑" href="/helpme" target="content"><img class="icon" src="../../img/icon-statistical.png">帮你挑<img class="nav-down" src="../../img/nav-down.png"></a>
 
             <%--<a class="nav-data-maintenance nav" title="帮你租" href="javascript:;"><img class="icon" src="../img/icon-maintenance.png">帮你租<img class="nav-down" src="../img/nav-down.png"></a>--%>
         </div>

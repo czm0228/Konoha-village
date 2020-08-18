@@ -361,7 +361,8 @@
                 </div>
             </div>
             <div id="select-div2">
-                &nbsp; &nbsp; &nbsp; &nbsp;房屋价格:<select name="price" id="price" class="required">
+                &nbsp; &nbsp; &nbsp; &nbsp;房屋价格:<select name="
+                price" id="price" class="required">
             </select>
                 &nbsp; &nbsp; &nbsp; &nbsp;房屋面积:<select name="squareMeter" id="area" class="required">
             </select>

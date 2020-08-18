@@ -57,4 +57,17 @@ public class TenantController {
     public String comment(){
        return "tenant/comment";
    }
+
+    /*人气房源*/
+    @RequestMapping(value = "/moodsHouses")
+    public String moodsHouse(){
+        return "tenant/popular";
+    }
+
+    /*帮你挑*/
+    @RequestMapping(value = "/helpme")
+    public String helpme(){
+        return "tenant/helpme";
+    }
+
 }
