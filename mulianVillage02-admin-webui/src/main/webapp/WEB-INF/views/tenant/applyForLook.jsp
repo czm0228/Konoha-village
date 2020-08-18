@@ -203,11 +203,11 @@
             <%--<input type="hidden" name="houseId" value="${requestScope.houseId}">
             <input type="hidden" name="userId" value="${sessionScope.user.id}">--%>
 
-            <button   type="button"  class="  btn btn-info  s" style="height: 35px " style="width: 130px">
+            <button   type="button"  class="btn btn-info  s" style="height: 35px " style="width: 130px" id="submit">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 提交</button>
 
 
-            <button   type="button" class=" btn btn-info   t" style="height: 35px" style="width: 130px">
+            <button   type="button" class=" btn btn-info   t" style="height: 35px" style="width: 130px" id="return">
                 <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回</button>
 
 

@@ -278,7 +278,9 @@
                 data:{"userId":userId,"applyId":id,"state":state},
                 success:function (result) {
                     if(result){
-                        $(obj).text("已取消");
+                        alert("取消成功!")
+                        $(obj).attr("class",'btn btn-info')
+                        $(obj).children().attr("class",'glyphicon glyphicon-ban-circle')
                         $(obj).attr("disabled",true);
                         $(obj).parents("tr").find("td:eq(2)").text("已取消");
                     }else {
