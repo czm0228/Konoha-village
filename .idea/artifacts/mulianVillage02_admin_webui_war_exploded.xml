@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="mulianVillage02-admin-webui:war exploded">
     <output-path>$PROJECT_DIR$/mulianVillage02-admin-webui/target/mulianVillage02-admin-webui</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>mulianVillage02-admin-webui</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -22,7 +29,7 @@
           <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:1.0" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.9.2" />
           <element id="library" level="project" name="Maven: cglib:cglib:3.2.5" />
-          <element id="library" level="project" name="Maven: org.ow2.asm:asm:5.2" />
+          <element id="library" level="project" name="Maven: org.ow2.asm:asm:6.0_ALPHA" />
           <element id="library" level="project" name="Maven: org.apache.ant:ant:1.9.6" />
           <element id="library" level="project" name="Maven: org.apache.ant:ant-launcher:1.9.6" />
           <element id="archive" name="mulianVillage03-admin-component-1.0-SNAPSHOT.jar">

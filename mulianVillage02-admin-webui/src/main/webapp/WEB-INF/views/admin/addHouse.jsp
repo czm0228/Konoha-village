@@ -11,70 +11,80 @@
     <title>Title</title>
 
 
-<link rel="stylesheet" href="../css/addHouse.css">
-<script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
-<script type="text/javascript">
+    <link rel="stylesheet" href="../css/addHouse.css">
+    <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
 
-    $(function () {
+        $(function () {
+            var lng=getUrlParam("lng");
+            var lat=getUrlParam("lat");
 
-        $("#addBtn").click(function () {
 
-            var address = $("#address1").val();
-            var price = $("#price1").val();
-            /*var status = $("#status1").val();*/
-            var squareMeter = $("#squareMeter1").val();
-            /*var metro = $("#metro1").val();
-            var img = $("#img1").val();
-            var abstracts = $("#abstracts1").val();
-            var thumbUpFor = $("#thumbUpFor1").val();
-            var houseType = $("#houseType1").val();
-            var hierarchy = $("#hierarchy1").val();*/
-            var numberPlies = $("#numberPlies1").val();
-            /*var fitment = $("#fitment1").val();
-            var orientation = $("#orientation1").val();
-            var buildTime = $("#buildTime1").val();
-            var plot = $("#plot1").val();
-            var floorType = $("#floorType1").val();
-            var rentWay = $("#rentWay1").val();*/
+            var address=getUrlParam("address");
 
-            if (address==''){
-                alert("地址不能为空")
-            }else if(price==''){
-                alert("价钱不能为空")
-            }else if(squareMeter=''||squareMeter==""){
-                alert("面积不能为空")
-            }else if(numberPlies=''||numberPlies=="") {
-                alert("楼层不能为空")
-            }else {
-                $.ajax({
-                    url:"/saveHouse",
-                    data:$("form").serialize(),
-                    success:function (result) {
+            $("#address1").val(address);
+            $("#lng").val(lng);
+            $("#lat").val(lat);
 
-                        /* alert(result)*/
-                        console.log(result)
-                        if (result){
-                            alert("增加成功")
-                            window.location.href="house";
-                        }else{
-                            alert("增加失败")
+            $("#addBtn").click(function () {
+
+                var address = $("#address1").val();
+                var price = $("#price1").val();
+
+                var squareMeter = $("#squareMeter1").val();
+
+                var numberPlies = $("#numberPlies1").val();
+
+
+
+                if (address==''){
+                    alert("地址不能为空")
+                }else if(price==''){
+                    alert("价钱不能为空")
+                }else if(squareMeter=''||squareMeter==""){
+                    alert("面积不能为空")
+                }else if(numberPlies=''||numberPlies=="") {
+                    alert("楼层不能为空")
+                }else {
+                    $.ajax({
+                        url:"/saveHouse",
+                        data:$("form").serialize(),
+                        success:function (result) {
+
+                            /* alert(result)*/
+                            console.log(result)
+                            if (result){
+                                alert("增加成功")
+                                window.location.href="house";
+                            }else{
+                                alert("增加失败")
+                            }
+
                         }
+                    })
+                }
 
-                    }
-                })
-            }
+            })
 
         })
-
-    })
-
-</script>
+        function getUrlParam(key) {
+            // 获取参数
+            var url = window.location.search;
+            //localhost:8080/doc?name=zhangsan&password=abc123
+            // 正则筛选地址栏
+            var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+            // 匹配目标参数
+            var result = url.substr(1).match(reg);
+            //返回参数值
+            return result ? decodeURIComponent(result[2]) : null;
+        }
+    </script>
 </head>
 <body>
 <div class="round">
     <h1>增加房源</h1>
     <form enctype="multipart/form-data">
-        地址:<input type="text" name="address" id="address1" value="${param.address1}"><br/>
+        地址:<input type="text" name="address" id="address1" disabled="disabled" value="${param.address1}"><br/>
         价格:<input type="number" name="price" id="price1" step="0.01" min="0"><br/>
         房屋状态:<select name="status" id="status1" class="status" style="text-align: center; text-align-last: center" >
         <option  >未租赁</option>
@@ -106,6 +116,9 @@
         小区:<input type="text" name="plot" id="plot1"><br/>
         楼型:<input type="text" name="floorType" id="floorType1"><br/>
         出租方式:<input type="text" name="rentWay" id="rentWay1"><br/>
+        <input type="text" name="lng" id="lng" hidden="hidden">
+        <input type="text" name="lat" id="lat" hidden="hidden">
+
         <br/>
         <br/>
         <input type="button"  class="submit" id="addBtn" value="确认增加">

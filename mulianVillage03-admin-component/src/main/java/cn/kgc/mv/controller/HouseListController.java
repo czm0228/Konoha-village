@@ -80,4 +80,9 @@ public class HouseListController {
    public House queryHouseDetails(@RequestParam("houseId") Integer houseId){
       return houseListService.queryHouseDetails(houseId);
    }
+   @RequestMapping(value = "/getCoordinate")
+   public House getCoordinate(@RequestParam("id") Integer id){
+      System.out.println(id);
+      return houseListService.getCoordinate(id);
+   }
 }

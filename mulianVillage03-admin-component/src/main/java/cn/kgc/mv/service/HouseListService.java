@@ -29,4 +29,7 @@ public interface HouseListService {
 
     /*查看房源详情*/
     House queryHouseDetails(Integer houseId);
+
+    /*查询经纬度*/
+    House getCoordinate(Integer id);
 }

@@ -49,7 +49,7 @@
                     <a title="房源列表" href="/house" target="content"><img class="icon-sub" src="../img/icon-infor.png">房源列表</a>
                 </li>
                 <li>
-                    <a title="添加房源" href="/addHouse" ><img class="icon-sub" src="../img/icon-infor.png">添加房源</a>
+                    <a title="添加房源" href="/addHouse1" ><img class="icon-sub" src="../img/icon-infor.png">添加房源</a>
                 </li>
 
             </ul>

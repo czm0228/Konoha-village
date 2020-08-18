@@ -1,6 +1,12 @@
 <component name="ArtifactManager">
   <artifact type="war" name="mulianVillage02-admin-webui:war">
     <output-path>$PROJECT_DIR$/mulianVillage02-admin-webui/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>mulianVillage02-admin-webui</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="archive" name="mulianVillage02-admin-webui.war">
       <element id="artifact" artifact-name="mulianVillage02-admin-webui:war exploded" />
     </root>

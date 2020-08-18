@@ -1,6 +1,12 @@
 <component name="ArtifactManager">
   <artifact type="war" name="mulianVillage04-admin-entity:war">
     <output-path>$PROJECT_DIR$/mulianVillage04-admin-entity/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>mulianVillage04-admin-entity</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="archive" name="mulianVillage04-admin-entity.war">
       <element id="artifact" artifact-name="mulianVillage04-admin-entity:war exploded" />
     </root>

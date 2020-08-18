@@ -6,10 +6,10 @@
 
     <insert id="saveHouse" parameterType="House">
 
-        INSERT INTO House_list(area_id,address,price,status,square_Meter,metro,img,abstracts,landlord_Id,thumb_Up_For,house_type,hierarchy,number_plies,fitment,orientation,build_time,plot,floor_type,rent_way) values(#{areaId},#{address},#{price},#{status},#{squareMeter},#{metro},#{img},#{abstracts},#{landlordId},#{thumbUpFor},#{houseType},#{hierarchy},#{numberPlies},#{fitment},#{orientation},#{buildTime},#{plot},#{floorType},#{rentWay})
+        INSERT INTO House_list(area_id,address,price,status,square_Meter,metro,img,abstracts,landlord_Id,thumb_Up_For,house_type,hierarchy,number_plies,fitment,orientation,build_time,plot,floor_type,rent_way,lng,lat) values(#{areaId},#{address},#{price},#{status},#{squareMeter},#{metro},#{img},#{abstracts},#{landlordId},#{thumbUpFor},#{houseType},#{hierarchy},#{numberPlies},#{fitment},#{orientation},#{buildTime},#{plot},#{floorType},#{rentWay},#{lng},#{lat})
 
     </insert>
-    
+
     <select id="allHouseList" resultType="House">
         SELECT * FROM House_list
     </select>

@@ -1,31 +1,35 @@
 package cn.kgc.mv.entity;
 
+import java.math.BigDecimal;
+
 public class House {
 
-private Integer id;     //房源序号
-private int areaId;     //地区ID
-private String address; //地址
-private double price;   //价格
-private String status;  //状态
-private int squareMeter;//面积
-private int metro;      //地铁
-private String img;     //图片
-private String abstracts;//简介
-private int landlordId; //房东ID
-private int thumbUpFor; //点赞数
-private User user;
-private Message message;
-private String houseType;//户型
-private String hierarchy;//高中低  楼层
-private int numberPlies;//房子在第几层
-private String fitment;//装修类型
-private String orientation;//朝向
-private String buildTime;//建房时间
-private String plot;//小区
-private String floorType;//楼型
-private String rentWay;//出租方式
-private String area;//区域
-private Salesman salesman;
+    private Integer id;     //房源序号
+    private int areaId;     //地区ID
+    private String address; //地址
+    private double price;   //价格
+    private String status;  //状态
+    private int squareMeter;//面积
+    private int metro;      //地铁
+    private String img;     //图片
+    private String abstracts;//简介
+    private int landlordId; //房东ID
+    private int thumbUpFor; //点赞数
+    private User user;
+    private Message message;
+    private String houseType;//户型
+    private String hierarchy;//高中低  楼层
+    private int numberPlies;//房子在第几层
+    private String fitment;//装修类型
+    private String orientation;//朝向
+    private String buildTime;//建房时间
+    private String plot;//小区
+    private String floorType;//楼型
+    private String rentWay;//出租方式
+    private String area;//区域
+    private Salesman salesman;
+    private BigDecimal lat;
+    private BigDecimal lng;
 /*private String name;//维护房源人姓名
 private String sImg;//维护房源人照片*/
 
@@ -56,232 +60,9 @@ private String sImg;//维护房源人照片*/
                 ", rentWay='" + rentWay + '\'' +
                 ", area='" + area + '\'' +
                 ", salesman=" + salesman +
+                ", lat=" + lat +
+                ", lng=" + lng +
                 '}';
-    }
-
-    public Salesman getSalesman() {
-        return salesman;
-    }
-
-    public void setSalesman(Salesman salesman) {
-        this.salesman = salesman;
-    }
-
-    public House(Integer id, int areaId, String address, double price, String status, int squareMeter, int metro, String img, String abstracts, int landlordId, int thumbUpFor, User user, Message message, String houseType, String hierarchy, int numberPlies, String fitment, String orientation, String buildTime, String plot, String floorType, String rentWay, String area, Salesman salesman) {
-        this.id = id;
-        this.areaId = areaId;
-        this.address = address;
-        this.price = price;
-        this.status = status;
-        this.squareMeter = squareMeter;
-        this.metro = metro;
-        this.img = img;
-        this.abstracts = abstracts;
-        this.landlordId = landlordId;
-        this.thumbUpFor = thumbUpFor;
-        this.user = user;
-        this.message = message;
-        this.houseType = houseType;
-        this.hierarchy = hierarchy;
-        this.numberPlies = numberPlies;
-        this.fitment = fitment;
-        this.orientation = orientation;
-        this.buildTime = buildTime;
-        this.plot = plot;
-        this.floorType = floorType;
-        this.rentWay = rentWay;
-        this.area = area;
-        this.salesman = salesman;
-    }
-
-    public House() {
-    }
-
-    public House(Integer id, int areaId, String address, double price, String status, int squareMeter, int metro, String img, String abstracts, int landlordId, int thumbUpFor) {
-        this.id = id;
-        this.areaId = areaId;
-        this.address = address;
-        this.price = price;
-        this.status = status;
-        this.squareMeter = squareMeter;
-        this.metro = metro;
-        this.img = img;
-        this.abstracts = abstracts;
-        this.landlordId = landlordId;
-        this.thumbUpFor = thumbUpFor;
-    }
-
-    public House(Integer id, int areaId, String address, double price, String status, int squareMeter, int metro, String img, String abstracts, int landlordId) {
-        this.id = id;
-        this.areaId = areaId;
-        this.address = address;
-        this.price = price;
-        this.status = status;
-        this.squareMeter = squareMeter;
-        this.metro = metro;
-        this.img = img;
-        this.abstracts = abstracts;
-        this.landlordId = landlordId;
-        this.user=user;
-    }
-    public House(Integer id, int areaId, String address, double price, String status, int squareMeter, int metro, String img, String abstracts, int landlordId, Message message) {
-        this.id = id;
-        this.areaId = areaId;
-        this.address = address;
-        this.price = price;
-        this.status = status;
-        this.squareMeter = squareMeter;
-        this.metro = metro;
-        this.img = img;
-        this.abstracts = abstracts;
-        this.landlordId = landlordId;
-        this.message=message;
-    }
-
-    public House(Integer id, int areaId, String address, double price, String status, int squareMeter, int metro, String img, String abstracts, int landlordId, User user) {
-        this.id = id;
-        this.areaId = areaId;
-        this.address = address;
-        this.price = price;
-        this.status = status;
-        this.squareMeter = squareMeter;
-        this.metro = metro;
-        this.img = img;
-        this.abstracts = abstracts;
-        this.landlordId = landlordId;
-        this.user=user;
-    }
-
-    public House(Integer id, int areaId, String address, double price, String status, int squareMeter, int metro, String img, String abstracts, int landlordId, int thumbUpFor, User user, Message message, String houseType, String hierarchy, int numberPlies, String fitment, String orientation, String buildTime, String plot, String floorType, String rentWay, String area) {
-        this.id = id;
-        this.areaId = areaId;
-        this.address = address;
-        this.price = price;
-        this.status = status;
-        this.squareMeter = squareMeter;
-        this.metro = metro;
-        this.img = img;
-        this.abstracts = abstracts;
-        this.landlordId = landlordId;
-        this.thumbUpFor = thumbUpFor;
-        this.user = user;
-        this.message = message;
-        this.houseType = houseType;
-        this.hierarchy = hierarchy;
-        this.numberPlies = numberPlies;
-        this.fitment = fitment;
-        this.orientation = orientation;
-        this.buildTime = buildTime;
-        this.plot = plot;
-        this.floorType = floorType;
-        this.rentWay = rentWay;
-        this.area = area;
-    }
-
-
-
-    public String getHouseType() {
-        return houseType;
-    }
-
-    public void setHouseType(String houseType) {
-        this.houseType = houseType;
-    }
-
-    public String getHierarchy() {
-        return hierarchy;
-    }
-
-    public void setHierarchy(String hierarchy) {
-        this.hierarchy = hierarchy;
-    }
-
-    public int getNumberPlies() {
-        return numberPlies;
-    }
-
-    public void setNumberPlies(int numberPlies) {
-        this.numberPlies = numberPlies;
-    }
-
-    public String getFitment() {
-        return fitment;
-    }
-
-    public void setFitment(String fitment) {
-        this.fitment = fitment;
-    }
-
-    public String getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(String orientation) {
-        this.orientation = orientation;
-    }
-
-    public String getBuildTime() {
-        return buildTime;
-    }
-
-    public void setBuildTime(String buildTime) {
-        this.buildTime = buildTime;
-    }
-
-    public String getPlot() {
-        return plot;
-    }
-
-    public void setPlot(String plot) {
-        this.plot = plot;
-    }
-
-    public String getFloorType() {
-        return floorType;
-    }
-
-    public void setFloorType(String floorType) {
-        this.floorType = floorType;
-    }
-
-    public String getRentWay() {
-        return rentWay;
-    }
-
-    public void setRentWay(String rentWay) {
-        this.rentWay = rentWay;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public int getThumbUpFor() {
-        return thumbUpFor;
-    }
-
-    public void setThumbUpFor(int thumbUpFor) {
-        this.thumbUpFor = thumbUpFor;
-    }
-
-    public Message getMessage() {
-        return message;
-    }
-
-    public void setMessage(Message message) {
-        this.message = message;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Integer getId() {
@@ -364,4 +145,163 @@ private String sImg;//维护房源人照片*/
         this.landlordId = landlordId;
     }
 
+    public int getThumbUpFor() {
+        return thumbUpFor;
+    }
+
+    public void setThumbUpFor(int thumbUpFor) {
+        this.thumbUpFor = thumbUpFor;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    public String getHouseType() {
+        return houseType;
+    }
+
+    public void setHouseType(String houseType) {
+        this.houseType = houseType;
+    }
+
+    public String getHierarchy() {
+        return hierarchy;
+    }
+
+    public void setHierarchy(String hierarchy) {
+        this.hierarchy = hierarchy;
+    }
+
+    public int getNumberPlies() {
+        return numberPlies;
+    }
+
+    public void setNumberPlies(int numberPlies) {
+        this.numberPlies = numberPlies;
+    }
+
+    public String getFitment() {
+        return fitment;
+    }
+
+    public void setFitment(String fitment) {
+        this.fitment = fitment;
+    }
+
+    public String getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(String orientation) {
+        this.orientation = orientation;
+    }
+
+    public String getBuildTime() {
+        return buildTime;
+    }
+
+    public void setBuildTime(String buildTime) {
+        this.buildTime = buildTime;
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public void setPlot(String plot) {
+        this.plot = plot;
+    }
+
+    public String getFloorType() {
+        return floorType;
+    }
+
+    public void setFloorType(String floorType) {
+        this.floorType = floorType;
+    }
+
+    public String getRentWay() {
+        return rentWay;
+    }
+
+    public void setRentWay(String rentWay) {
+        this.rentWay = rentWay;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public Salesman getSalesman() {
+        return salesman;
+    }
+
+    public void setSalesman(Salesman salesman) {
+        this.salesman = salesman;
+    }
+
+    public BigDecimal getLat() {
+        return lat;
+    }
+
+    public void setLat(BigDecimal lat) {
+        this.lat = lat;
+    }
+
+    public BigDecimal getLng() {
+        return lng;
+    }
+
+    public void setLng(BigDecimal lng) {
+        this.lng = lng;
+    }
+
+    public House(Integer id, int areaId, String address, double price, String status, int squareMeter, int metro, String img, String abstracts, int landlordId, int thumbUpFor, User user, Message message, String houseType, String hierarchy, int numberPlies, String fitment, String orientation, String buildTime, String plot, String floorType, String rentWay, String area, Salesman salesman, BigDecimal lat, BigDecimal lng) {
+        this.id = id;
+        this.areaId = areaId;
+        this.address = address;
+        this.price = price;
+        this.status = status;
+        this.squareMeter = squareMeter;
+        this.metro = metro;
+        this.img = img;
+        this.abstracts = abstracts;
+        this.landlordId = landlordId;
+        this.thumbUpFor = thumbUpFor;
+        this.user = user;
+        this.message = message;
+        this.houseType = houseType;
+        this.hierarchy = hierarchy;
+        this.numberPlies = numberPlies;
+        this.fitment = fitment;
+        this.orientation = orientation;
+        this.buildTime = buildTime;
+        this.plot = plot;
+        this.floorType = floorType;
+        this.rentWay = rentWay;
+        this.area = area;
+        this.salesman = salesman;
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    public House() {
+    }
 }

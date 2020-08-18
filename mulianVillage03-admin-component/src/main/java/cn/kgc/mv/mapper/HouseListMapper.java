@@ -32,4 +32,6 @@ public interface HouseListMapper {
 
     /*查看房源详情*/
     public House queryHouseDetails(@Param("houseId") Integer houseId);
+    /*通过房源查询经纬度*/
+    House getCoordinate(@Param("id") Integer id);
 }

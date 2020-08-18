@@ -87,4 +87,8 @@ public class HouseListServiceImpl implements HouseListService {
     public House queryHouseDetails(Integer houseId) {
         return houseListMapper.queryHouseDetails(houseId);
     }
+    @Override
+    public House getCoordinate(Integer id) {
+        return houseListMapper.getCoordinate(id);
+    }
 }

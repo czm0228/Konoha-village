@@ -34,4 +34,10 @@ public class AdminController {
         return "admin/house";
     }
 
+    @RequestMapping(value = "/addHouse1")
+    public String addHouse2(){
+        return "admin/addhouse2";
+    }
+
+
 }

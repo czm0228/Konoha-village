@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="mulianVillage04-admin-entity:war exploded">
     <output-path>$PROJECT_DIR$/mulianVillage04-admin-entity/target/mulianVillage04-admin-entity</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>mulianVillage04-admin-entity</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

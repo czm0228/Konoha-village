@@ -11,6 +11,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+
+
+    <style>
+        #container{
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+
+
+    <script type="text/javascript" src='//webapi.amap.com/maps?v=2.0&key=04a1d0ae22a6b8f61a02da93bd7972f2'></script>
+
+
+
+
+
+
+
     <script src="../../../js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../../../css/style.css">
     <script type="text/javascript" src="../../../js/jquery-1.8.3.js"></script>
@@ -19,23 +37,12 @@
     <link rel="stylesheet" type="text/css" href="../../../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../../../css/main.css"/>
 
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="../../../js/bootstrap-3.3.7-dist/js/bootstrap.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
-
-<%-- <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>--%>
-
+    <%-- <script src="../../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>--%>
+    <script src="../../../js/bootbox.min.js"></script>
     <style type="text/css">
         .img-span {
             float: left;
-            margin: 28px 20px 20px 20px;
+            margin: 20px 20px 20px 20px;
             width: 600px;
         }
 
@@ -57,6 +64,40 @@
             left: 350px;
         }
 
+        .login1 { /* 按钮美化 */
+            width: 70px; /* 宽度 */
+            height: 30px; /* 高度 */
+            border-width: 0px; /* 边框宽度 */
+            border-radius: 3px; /* 边框半径 */
+            background: #1E90FF; /* 背景颜色 */
+            cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+            outline: none; /* 不显示轮廓线 */
+            font-family: Microsoft YaHei; /* 设置字体 */
+            color: white; /* 字体颜色 */
+            font-size: 17px; /* 字体大小 */
+        }
+
+        .login1:hover { /* 鼠标移入按钮范围时改变颜色 */
+            background: #5599FF;
+
+        }
+
+        .login2 { /* 按钮美化 */
+            width: 140px; /* 宽度 */
+            height: 30px; /* 高度 */
+            border-width: 0px; /* 边框宽度 */
+            border-radius: 3px; /* 边框半径 */
+            background: #1E90FF; /* 背景颜色 */
+            cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+            outline: none; /* 不显示轮廓线 */
+            font-family: Microsoft YaHei; /* 设置字体 */
+            color: white; /* 字体颜色 */
+            font-size: 17px; /* 字体大小 */
+        }
+
+        .login2:hover {
+            background: #5599FF;
+        }
 
         /* 这结束*/
 
@@ -124,27 +165,27 @@
         #xin {
 
             position: absolute;
-            right: -50px;
-            top: 173px;
+            right: 0px;
+            top: 187px;
 
         }
 
         #shi {
 
             position: absolute;
-            right: -114px;
-            top: 205px;
+            right: -64px;
+            top: 230px;
 
         }
 
         #zu {
             position: absolute;
-            top: 205px;
+            top: 230px;
         }
 
         #qu {
             position: absolute;
-            top: 235px;
+            top: 270px;
         }
 
         .div2 {
@@ -162,7 +203,7 @@
 
         .d-xl-inline {
             position: absolute;
-            right: -70px;
+            right: -120px;
             top: 360px;
         }
 
@@ -171,7 +212,27 @@
             position: absolute;
             top: 430px;
             position: absolute;
-            right: -50px;
+            right: 10px;
+
+            line-height: 10px;
+
+            width: 120px; /* 宽度 */
+            height: 50px; /* 高度 */
+            border-width: 0px; /* 边框宽度 */
+            border-radius: 3px; /* 边框半径 */
+            background: #EDF6FF; /* 背景颜色 */
+            cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+            outline: none; /* 不显示轮廓线 */
+            font-family: Microsoft YaHei; /* 设置字体 */
+            font-size: 16px;
+            color: blue;
+            font-weight:300px;
+
+            background-image: url(../../../img/submit1.png); /*设置小图标*/
+            background-size: 30px 30px; /*小图标的大小*/
+            background-position: 11px 11px; /*小图标在input的位置*/
+            background-repeat: no-repeat; /*背景小图标不重复*/
+            padding: 8px 10px 8px 40px; /*设置input内边距*/
 
         }
 
@@ -179,7 +240,25 @@
             position: absolute;
             top: 430px;
             position: absolute;
-            right: -190px;
+            right: -120px;
+            font-weight:300px;
+
+            width: 120px; /* 宽度 */
+            height: 50px; /* 高度 */
+            border-width: 0px; /* 边框宽度 */
+            border-radius: 3px; /* 边框半径 */
+            background: cornsilk; /* 背景颜色 */
+            cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+            outline: none; /* 不显示轮廓线 */
+            font-family: Microsoft YaHei; /* 设置字体 */
+            font-size: 16px;
+            color: red;
+
+            background-image: url(../../../img/submit2.png); /*设置小图标*/
+            background-size: 30px 30px; /*小图标的大小*/
+            background-position: 11px 11px; /*小图标在input的位置*/
+            background-repeat: no-repeat; /*背景小图标不重复*/
+            padding: 8px 10px 8px 40px; /*设置input内边距*/
         }
 
         .tu {
@@ -188,7 +267,17 @@
             height: 65%;
         }
 
+        .pagination {
+            position: absolute;
 
+            left: 260px;
+        }
+
+        .pagination {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
 
         .pagination a {
 
@@ -210,6 +299,7 @@
         .pagination a:hover:not(.active) {
             background-color: aquamarine;
         }
+
         .button {
             display: inline-block;
             padding: 7px 7px;
@@ -225,45 +315,32 @@
             box-shadow: 0 9px #999;
         }
 
-        .button:hover {background-color: #00bfff}
+        .button:hover {
+            background-color: #00bfff
+        }
 
         .button:active {
             background-color: #00bfff;
             box-shadow: 0 5px #666;
             transform: translateY(4px);
         }
-        .blue{
+
+        .blue {
             border: 1px solid #ccc;
             padding: 7px 0px;
             border-radius: 3px;
-            padding-left:5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+            padding-left: 5px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
         }
-        .blue:focus{
+
+        .blue:focus {
             border-color: #66afe9;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
-        }
-
-        .yi{
-            position: relative;
-            left: -50px;
-        }
-        #slaesmanName{
-            position:absolute;
-            right: -35px;
-            top: 300px;
-        }
-
-        #houseImg{
-            position: relative;
-            top: 25px;
-
-
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
         }
 
 
@@ -271,12 +348,55 @@
 
     <script type="text/javascript">
 
+
+
         $(function () {
+
+
+            $.ajax({
+                url:"/getCoordinate",
+                data:{"id":${param.id}},
+                success:function (result) {
+
+                    $(".lng").val(result.lng)
+                    $(".lat").val(result.lat)
+
+                    var c=$(".lng").val();
+
+                    var d=$(".lat").val();
+
+
+
+                    window.onload = function(){
+                        var map = new AMap.Map('container', {
+                            zoom:18,//缩放级别
+                            center: [c,d],//地图显示中心点坐标，如果没有center属性，则会定位到你当前所处的位置
+                            viewMode:'3D'//使用3D视图
+                        });
+
+                        var marker = new AMap.Marker({
+                            position: new AMap.LngLat(c,d), // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+
+
+                        });
+                        map.add(marker);
+                    }
+
+
+
+
+                }})
+
+
+
+
+
+
             $.ajax({
                 url: "/queryHouseDetails",
                 data: {"houseId":${param.id}},
                 success: function (result) {
-                    /*console.log(result)*/
+                    /* console.log(result)*/
                     $("#houseImg").attr("src", result.img)
                     $("#houseImg").attr("alt", result.address)
                     $("#price").text(result.price)
@@ -287,6 +407,7 @@
                     $("#orientation").text(result.orientation)
                     $("#buildTime").text(result.buildTime + "年建")
                     $("#plot").text(result.plot)
+                    $("#address_id").val(result.address)
                     $("#xin").text("楼型：" + result.floorType)
                     $("#zu").text("出租方式：" + result.rentWay)
                     $("#area").text(result.area)
@@ -307,53 +428,37 @@
 
             $("#btn1").click(function () {
                 var username = "${sessionScope.user.userName}";
-                var userId = "${sessionScope.user.id}";
-                var falg = false;
+                var userId= "${sessionScope.user.id}";
 
-                    //查询用户信用度
+                if (username != "" && username != null) {
+
+
+
                     $.ajax({
-                        url: "/queryCreditLine",
-                        type: "post",
-                        async: false,
-                        data: {"userName": username},
+                        url: "/queryApply",
+                        data: {"houseId":${param.id},"userId":userId},
                         success: function (result) {
-                            if(result=="" || result==null){
-                                alert("您还没有登录，请登陆后再申请看房！！")
-                                falg = true;
-                            }else {
-                            if (result.creditLine < 50) {
-                                alert("对不起!,你的信用度不足")
-                                falg = true;
-                            }
-                            }
+                            var houseId =${param.id};
+                            var userId ="${sessionScope.user.id}";
+                            if (houseId == result.houseId && userId == result.userId) {
 
+                                alert("你已申请看房！")
+
+                            } else {
+                                window.location.href = "/applyForLook?houseId=" +${param.id};
+                            }
                         }
                     })
 
-
-                    if (!falg) {
-                        $.ajax({
-                            url: "/queryApply",
-                            data: {"houseId":${param.id}, "userId": userId},
-                            success: function (result) {
-                                var houseId =${param.id};
-                                var userId = "${sessionScope.user.id}";
-                                if (houseId == result.houseId && userId == result.userId) {
-
-                                    alert("你已申请看房！")
-
-                                } else {
-                                    window.location.href = "/applyForLook?houseId=" +${param.id};
-                                }
-                            }
-                        })
-                    }
-
+                } else {
+                    alert("您还没有登录，请登陆后再申请看房！！")
+                    return false;
+                }
             })
 
 
             $("#btn2").click(function () {
-                window.history.go(-1);
+                history.go(-1);
             });
 
 
@@ -411,31 +516,56 @@
 
             })
 
+
+
+
+
+
+
+
         });
+
+
+
+
+
+
+
+
+        //初始化地图插件
+
+
 
     </script>
 </head>
 <body>
+<form>
+    <input type="text"  class="address_id">
+    <input type="text" class="lng" id="lng" name="lng" hidden="hidden">
+    <input type="text" class="lat" id="lat" name="lat" hidden="hidden">
+
+
+</form>
 <div>
     <div class="result-title">
-        <p>当前位置>房屋列表>房屋详情页 </p>
+        <h1>当前位置>房屋列表>房屋详情页 </h1>
     </div>
 
-    <div >
+    <div>
 			<span class="img-span"> <img alt="${requestScope.house.address}"
                                          src="${requestScope.house.img}" width="600px" height="400px" id="houseImg">
 			</span>
         <span class="img-span" id="img-span"> <br>
 
-           <div class="yi">
-				<p>价格:<span class="font" id="price">${requestScope.house.price}</span> <span class="fonts">元/月</span></p> <br>
-
+				<p>价格:<span class="font" id="price">${requestScope.house.price}</span> <span
+                        class="fonts">元/月</span></p> <br>
 
                   <table border="0" cellpadding="0" cellspacing="0" style="width: 600px;border-collapse: collapse;">
              <tr>
                <td style="height: 80px;border-collapse: collapse;">
                    <p class="big" id="houseType">${requestScope.house.houseType}</p>
-                      <p class="xiao" id="hierarchy">${requestScope.house.hierarchy}/${requestScope.house.numberPlies}层</p>
+                      <p class="xiao"
+                         id="hierarchy">${requestScope.house.hierarchy}/${requestScope.house.numberPlies}层</p>
                </td>
 
                  <td style="height: 80px;border-collapse: collapse;">
@@ -455,7 +585,7 @@
 
   <div class="div">
 
-               <p class="fonts-size" >小区：<a href="#" id="plot">${requestScope.house.plot}</a></p> <br>
+               <p class="fonts-size">小区：<a href="#" id="plot">${requestScope.house.plot}</a></p> <br>
                <p class="fonts-size" id="xin">${requestScope.house.floorType}</p> <br>
                <p class="fonts-size" id="zu">${requestScope.house.rentWay}</p> <br>
                <p class="fonts-size" id="shi">看房时间：随时看房</p> <br>
@@ -466,25 +596,18 @@
             <div class="div2">
                 <img src="${requestScope.house.sImg}" class="tu" id="slaesmanImg">
                <h2 id="slaesmanName">${requestScope.house.name}</h2>
-                <p class="d-xl-inline">我是房源信息维护人
-                   </p>
+                <p class="d-xl-inline">我是房源信息维护人 &nbsp; 房源信息由我维护</p>
                 <br>
-                </div>
-
-         <%--<input class="sub1" img src="../../img/submit1.png" type="submit" value="在线咨询">--%>
 
 
-       <button  type="submit" class="btn btn-info  sub1" style="height: 35px" style="width: 130px">
-         <span class=" glyphicon glyphicon-comment" aria-hidden="true"></span>  在线咨询</button>
+                 <input class="sub1" img src="../../img/submit1.png" type="submit" value="在线咨询">
+                 <input class="sub2" img src="../../img/submit2.png" type="submit" value="拨打电话">
 
 
 
-       <button  type="submit" class="btn btn-warning  sub2" style="height: 35px" style="width: 130px">
-         <span class=" glyphicon glyphicon-earphone" aria-hidden="true"></span>  拨打电话</button>
-
-</div>
 
 
+            </div>
 
 
 
@@ -496,14 +619,10 @@
     </div>
     <div>
         <%--<a href="/AddApplyServlet?houseId=${requestScope.house.id}"></a>--%>
+        <button id="btn1" class="login2" type="button"></button>
 
 
-            <button  type="button" class="btn btn-info" id="btn1"style="height: 35px" style="width: 130px">
-               </button>
-
-
-            <button  type="button" class="btn btn-info"  id="btn2" style="height: 35px" style="width: 130px">
-                返回</button>
+        <button id="btn2" class="login1" type="button">返回</button>
     </div>
 </div>
 
@@ -527,6 +646,8 @@
     </ul>
 
 </div>--%>
+<div id="container"></div>
+
 
 </body>
 </html>

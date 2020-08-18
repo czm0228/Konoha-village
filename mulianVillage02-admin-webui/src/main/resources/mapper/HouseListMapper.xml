@@ -230,4 +230,7 @@
         LEFT JOIN AREA AS a ON h.area_id=a.id LEFT JOIN salesman AS s ON h.salesman_id = s.id  LEFT JOIN USER AS u
         ON h.landlord_id=u.id LEFT JOIN message AS m ON u.id=m.id  WHERE h.id=#{houseId}
     </select>
+    <select id="getCoordinate" parameterType="int" resultType="House">
+        select lat,lng from house_list where id=#{id}
+    </select>
 </mapper>

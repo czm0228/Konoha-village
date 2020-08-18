@@ -276,7 +276,7 @@
                 <input type="button" value="查询" id="queryHouse" class="btn btn-primary search_btn"
                        style="position: absolute;top: -5px; right: 130px; width: 100px;">
 
-                <input type="button" value="增加房源" id="addBtn" onclick="window.location.href='addHouse'" class="btn btn-primary search_btn"
+                <input type="button" value="增加房源" id="addBtn" onclick="window.location.href='addHouse1'" class="btn btn-primary search_btn"
                        style="position: absolute;top: -5px; right: 20px; width: 100px;">
             </div>
         </form>
