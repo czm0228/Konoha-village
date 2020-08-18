@@ -2,7 +2,7 @@
 	
 	.img-span {
 		float: left;
-		margin: 20px 20px 20px 20px;
+		margin: 30px 20px 20px 20px;
 		width: 1000px;
 	}
 	
@@ -12,7 +12,7 @@
 	top: 0px;
 	left: 0px;
 	color:  #BFBFBF;
-	font-size: 15px;
+	font-size: 13px;
 }
 
 #imgOne{

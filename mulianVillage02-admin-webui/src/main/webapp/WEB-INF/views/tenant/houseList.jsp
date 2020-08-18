@@ -12,6 +12,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../../../js/bootstrap-3.3.7-dist/js/bootstrap.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
@@ -210,12 +221,12 @@
                         $(result.list).each(function () {
                             str += "<tr>" +
                                 "<td style='overflow:hidden'>" + this.id + "</td>" +
-                                "<td style='max-width:300px'><img src='" + this.img + "' id='img-span'></td>" +
+                                "<td style='max-width:400px'><img src='" + this.img + "' id='img-span'></td>" +
                                 "<td>" + this.price + "元</td>" +
                                 "<td>" + this.squareMeter + "m²</td>" +
                                 "<td>" + this.status + "</td>" +
                                 "<td>" +
-                                "<button class='btn btn-primary search_btn' type='button' onclick='queryHouse("+this.id+")'>查看</button>" +
+                                "<button class='btn btn-info  cha'  type='button' style='font-size: 14px' onclick='queryHouse("+this.id+")'>查看</button>" +
                                 "</td>" +
                                 "</tr>"
                         })
@@ -253,6 +264,12 @@
     </script>
 
     <style type="text/css">
+
+        .cha{
+            height: 33px;
+            width: 68px;
+
+        }
         #show_tbody td {
             font-size: 15px;
             vertical-align: middle
@@ -289,7 +306,7 @@
             font-size: small;
             position: relative;
             right: 0px;
-            top: -25px;
+            top: -40px;
 
         }
 
@@ -303,6 +320,22 @@
             top: -20px;
             color: #BFBFBF;
             font-size: 15px;
+        }
+
+        #rolePageBody1{
+            position: fixed;
+            left: 480px;
+            bottom:0px;
+            border-bottom:0px hidden;
+        }
+
+        #ktext{
+            position: relative;
+            top:-32px;
+        }
+        #queryHouse{
+            position: relative;
+            bottom: 1px;
         }
 
         /*====================================*/
@@ -337,9 +370,10 @@
             </select>
                 &nbsp; &nbsp; &nbsp; &nbsp; 地区:<select name="region" id="region" class="required">
             </select>
-                <input id="Ktext" type="text" name="search" class="form-control" placeholder="请输入查询的内容">
-                <input type="button" value="查询" id="queryHouse" class="btn btn-primary search_btn"
-                       style="position: absolute;top: -5px; right: 20px; width: 100px;">
+                <input id="Ktext" type="text" name="search" class="form-control" placeholder="请输入查询的内容" style="height:31px ">
+
+               <button id="queryHouse"  type="button" class="btn btn-info"   style=" font-size: 14px; position: absolute;top: -5px; right:20px; width: 100px; height: 33px ">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;查询 &nbsp;</button>
             </div>
         </form>
     </div>

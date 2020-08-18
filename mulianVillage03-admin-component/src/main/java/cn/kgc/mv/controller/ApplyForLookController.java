@@ -54,7 +54,7 @@ public class ApplyForLookController {
             @RequestParam(value="pageNum", defaultValue="1") Integer pageNum,
 
             // pageSize默认值使用5
-            @RequestParam(value="pageSize", defaultValue="6") Integer pageSize,
+            @RequestParam(value="pageSize", defaultValue="8") Integer pageSize,
 
             ModelMap modelMap
 

@@ -35,7 +35,7 @@
 <div class="container">
     <img class="background" src="../../../img/bg.jpg">
     <!-- 头部 begin -->
-    <div class="header"><img src="../../../img/logo.png" id="logo" alt="logo" title="logo"/>    <span id="spanTitle">木葉村房屋租赁管理系统</span></div>
+    <div class="header"><img src="../../../img/logo.png" id="logo" alt="logo" title="logo"/>    <span id="spanTitle">木叶村欢迎您</span></div>
 
 
     <div class="main">
