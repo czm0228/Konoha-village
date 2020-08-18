@@ -58,7 +58,12 @@ public class UserController {
       if(users!=null){
           session.setAttribute("user",users);
       }
-       return "redirect:/frameTenant";
+
+        if(users.getType()==0){
+            return "redirect:/frameTenant";
+        }else {
+            return "redirect:/houtai";
+        }
     }
 
 
@@ -77,7 +82,7 @@ public class UserController {
             if (phone == "" || phone == null) {
                 return "您还获取验证码！";
             } else if (!phone.equals(user.getPhoneNumber())) {//提交的手机号码是否和接收验证码的手机号码一致！
-                return "提交的手机号码与接收验证码的手机号码一致!";
+                return "提交的手机号码与接收验证码的手机号码不一致!";
             } else if (!code.equals(code1)) {//判断验证码是否一致
                 return "验证码不正确!";
             } else {

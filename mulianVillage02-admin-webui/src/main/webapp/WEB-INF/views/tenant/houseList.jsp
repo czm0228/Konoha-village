@@ -87,9 +87,8 @@
             var metroId = getUrlParam("metroId");
             var areaId = getUrlParam("areaId");
             var search = getUrlParam("search");
-
             if (priceId == null || priceId == "" && squareMeterId == null || squareMeterId == "" &&
-                metroId == null || metroId == "" && areaId == null || areaId == "" && search == null || search) {
+                metroId == null || metroId == "" && areaId == null || areaId == "" && search == null || search=="") {
                 queryHouseList(priceId, squareMeterId, metroId, areaId, search);
             }
 

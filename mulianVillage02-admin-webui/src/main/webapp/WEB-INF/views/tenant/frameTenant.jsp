@@ -68,9 +68,9 @@
 
             <a class="nav-statistical-reports nav" title="租赁信息" href="javascript:;"><img class="icon" src="../../../img/icon-statistical.png">租赁信息<img class="nav-down" src="../../../img/nav-down.png"></a>
             <ul class="submenu hide">
-                <li>
-                    <a title="待租赁列表" href="/LeaseServlet?userId=${sessionScope.user.id}" target="content"><img class="icon-sub" src="../../../img/icon-infor.png">待租赁列表</a>
-                </li>
+               <%-- <li>
+                    <a title="待租赁列表" href="/lease" target="content"><img class="icon-sub" src="../../../img/icon-infor.png">待租赁列表</a>
+                </li>--%>
                 <li>
                     <a title="我的租赁" href="javascript:;"><img class="icon-sub" src="../../../img/icon-infor.png">我的租赁</a>
                 </li>
@@ -86,7 +86,10 @@
                     <a title="看房申请列表" href="/myApplyFor" target="content"><img class="icon-sub" src="../../../img/icon-infor.png">看房申请列表</a>
                 </li>
                 <li>
-                    <a title="待看列表" href="/ForTheLease?userId=${sessionScope.user.id}" target="content"><img class="icon-sub" src="../../../img/icon-infor.png">待看列表</a>
+                    <a title="待看列表" href="/forTheLease" target="content"><img class="icon-sub" src="../../../img/icon-infor.png">待看列表</a>
+                </li>
+                <li>
+                    <a title="已看列表" href="/haveToSee" target="content"><img class="icon-sub" src="../../../img/icon-infor.png">已看列表</a>
                 </li>
                 <li>
                     <a title="退租申请列表" href="javascript:;"><img class="icon-sub" src="../../../img/icon-infor.png">退租申请列表</a>

@@ -8,8 +8,8 @@
         INSERT INTO apply(house_id,user_id,datetime,phone,username) VALUES(#{houseId},#{userId},#{datetime},#{phone},#{userName})
     </insert>
 
-    <select id="queryApply" parameterType="int" resultType="Apply">
-        SELECT aid id,house_id houseId,user_id userId,datetime,state,phone,username userName FROM apply WHERE house_id=#{houseId} and user_id=#{userId}
+    <select id="queryApply" parameterType="hashMap" resultType="Apply">
+        SELECT aid id,house_id houseId,user_id userId,datetime,state,phone,username userName FROM apply WHERE house_id=#{houseId} and user_id=#{userId} AND state IN (#{state1},#{state2})
     </select>
 
 <resultMap id="reApply" type="Apply">
@@ -25,7 +25,7 @@
 </resultMap>
     <select id="queryMyApply" parameterType="hashMap" resultMap="reApply">
         SELECT a.aid  id,a.house_id  houseId,a.user_id  userId,a.datetime  datetime,h.address  address,a.username userName,state
-        FROM apply  a LEFT JOIN house_list AS h ON a.house_id=h.id  WHERE a.user_id=#{userId} AND state NOT IN (#{state1})
+        FROM apply  a LEFT JOIN house_list AS h ON a.house_id=h.id  WHERE a.user_id=#{userId} AND state NOT IN (#{state1},#{state2})
 
          <if test="state !='' &amp;&amp; state!=null">
              and state=#{state}
@@ -43,4 +43,56 @@
         UPDATE apply SET state=#{state2} WHERE aid=#{applyId} AND user_id=#{userId} AND state=#{state}
     </update>
 
+
+
+    <resultMap id="reApply2" type="Apply">
+        <id property="id" column="id"></id>
+        <result property="houseId" column="houseId"></result>
+        <result property="userId" column="userId"></result>
+        <result property="datetime" column="datetime"></result>
+        <result property="userName" column="userName"></result>
+        <association property="house" javaType="cn.kgc.mv.entity.House">
+            <result property="address" column="address"></result>
+            <result property="rentWay" column="rentWay"></result>
+        </association>
+    </resultMap>
+<select id="queryToLookAt" parameterType="hashMap" resultMap="reApply2">
+    SELECT a.aid  id,a.house_id  houseId,a.user_id  userId,a.datetime  datetime,h.address  address,h.rent_way rentWay,a.username userName
+    FROM apply  a LEFT JOIN house_list AS h ON a.house_id=h.id  WHERE a.user_id=#{userId} AND state = #{state1}
+
+    <if test="rentWay !='' &amp;&amp; rentWay!=null">
+        and h.rent_way=#{rentWay}
+    </if>
+    <if test="date!='' &amp;&amp; date!=null">
+        and datetime like #{date}
+    </if>
+    <if test="search!='' &amp;&amp; search!=null">
+        and h.address like #{search}
+    </if>
+    ORDER BY a.datetime DESC
+</select>
+
+    <update id="toSeeHouse" parameterType="Apply">
+        UPDATE apply SET state=#{state} where aid=#{id} AND user_id=#{userId}
+    </update>
+
+    <select id="queryhtoSee" parameterType="hashMap" resultMap="reApply">
+        SELECT a.aid  id,a.house_id  houseId,a.user_id  userId,a.datetime  datetime,h.address  address,a.username userName,state
+        FROM apply  a LEFT JOIN house_list AS h ON a.house_id=h.id  WHERE a.user_id=#{userId} AND state IN (#{state1},#{state2})
+
+        <if test="state !='' &amp;&amp; state!=null">
+            and state=#{state}
+        </if>
+        <if test="date!='' &amp;&amp; date!=null">
+            and datetime like #{date}
+        </if>
+        <if test="search!='' &amp;&amp; search!=null">
+            and h.address like #{search}
+        </if>
+        ORDER BY a.datetime DESC
+    </select>
+
+    <delete id="deletehaveToSee" parameterType="hashMap">
+        DELETE FROM apply WHERE aid=#{id} AND user_id=#{userId} AND state IN (#{state1},#{state2})
+    </delete>
 </mapper>
